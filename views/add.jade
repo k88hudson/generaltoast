@@ -1,0 +1,13 @@
+extend layout
+
+block content
+  h1 Add new
+
+  form(method='post', action='/add')
+    textarea(name='message')
+    input(type='text', name='url', placeholder='url')
+    input(type='hidden', name='geolocation')
+    label(for='is_private')
+      span Is private?
+      input(type='checkbox', name='is_private')
+    button(type='submit') Add

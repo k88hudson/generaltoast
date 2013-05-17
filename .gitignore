@@ -1,0 +1,5 @@
+.DS_Store
+whitelist.json
+node_modules
+local.json
+public/javascripts/build
