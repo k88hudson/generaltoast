@@ -128,7 +128,7 @@ label {
     width: 100%;
 }
 
-button {
+button, #login {
     background-color: #72c575;
     border: 0;
     border-radius: 5px;
