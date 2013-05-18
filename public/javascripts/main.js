@@ -7,9 +7,14 @@ define(['jquery', 'meat'],
   var currentUser = localStorage.getItem('personaEmail');
 
   var checkUrl = function () {
-    if (body.data('url')) {
+    var url = body.data('url');
+    if (url.indexOf('/post/') > -1 || url.indexOf('/edit/') > -1) {
+      body.find('.container.right').addClass('hidden');
       meat.getOne(body);
+    } else if (url.indexOf('/admin/') > -1 || url.indexOf('/add') > -1) {
+      return;
     } else {
+      body.find('.container.right').removeClass('hidden');
       meat.getAll();
     }
   }

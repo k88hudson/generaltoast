@@ -65,13 +65,13 @@ a {
 }
 
 #header {
-    margin-bottom: 20px;
-    position: absolute;
+    position: fixed;
     right: 0;
+    top: 0;
     z-index: 2;
 }
 
-#header a {
+#header a, #side-actions a {
     background-color: #f1f1f1;
     display: block;
     float: left;
@@ -94,12 +94,43 @@ a {
     color: #eee;
 }
 
+#side-actions {
+    position: fixed;
+    right: 0;
+    top: 40px;
+    z-index: 2;
+    width: 90px;
+}
+
+#side-actions a {
+    background-color: #59d5bc;
+    color: #fff;
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 100%;
+}
+
+#side-actions a:hover {
+    background-color: #3e99a4;
+}
+
 #wrapper {
     height: 100%;
     margin: 0 auto;
-    max-width: 700px;
+    max-width: 900px;
     min-width: 300px;
     position: relative;
+}
+
+.form {
+    margin-top: 14px;
+}
+
+form {
+    margin: 0 27% 0 0;
+    max-width: 800px;
 }
 
 .container {
@@ -118,7 +149,7 @@ a {
 h1, h2 {
     color: #49d1f8;
     font-size: 35px;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 textarea {
@@ -143,14 +174,13 @@ textarea {
     font-size: 17px;
     line-height: 20px;
     margin-bottom: 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     padding: 15px 10px;
     position: relative;
 }
 
-form {
-    margin-top: 20px;
+.messages p {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 input[type="text"], textarea {
@@ -215,13 +245,26 @@ ul.links a {
     font-family: 'BebasNeueRegular', Arial, sans-serif;
     font-size: 18px;
 }
-.permalink:hover {
+
+.actions a:hover {
     color: #111;
 }
 
-@media only screen and (max-width: 320px) {
+.hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 370px) {
     .messages {
         margin-right: 0;
+    }
+
+    #side-actions {
+        top: 40px;
+    }
+
+    form {
+        margin: 80px 0 0;
     }
 
     .container.right {

@@ -1,16 +1,17 @@
 extend layout
 
 block content
-  h1 Edit
+  .form
+    h1 Edit
 
-  form(method='post', action='/edit/#{post.id}')
-    textarea(name='message')= post.content.message
-    input(type='text', name='url', placeholder='url', value='#{postUrl}')
-    input(type='hidden', name='geolocation', value="#{geolocation}")
-    label(for='is_private')
-      span Is private?
-      if post.meta.isPrivate
-        input(type='checkbox', name='is_private', checked)
-      else
-        input(type='checkbox', name='is_private')
-    button(type='submit') Update
+    form(method='post', action='/edit/#{post.id}')
+      textarea(name='message')= post.content.message
+      input(type='text', name='url', placeholder='url', value='#{postUrl}')
+      input(type='hidden', name='geolocation', value="#{geolocation}")
+      label(for='is_private')
+        span Is private?
+        if post.meta.isPrivate
+          input(type='checkbox', name='is_private', checked)
+        else
+          input(type='checkbox', name='is_private')
+      button(type='submit') Update

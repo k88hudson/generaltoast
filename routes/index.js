@@ -20,7 +20,7 @@ module.exports = function (app, nconf, isAdmin) {
   });
 
   app.get('/', function (req, res) {
-    res.render('index', { url: null });
+    res.render('index', { url: '/recent', isAdmin: isEditor });
   });
 
   app.get('/recent', function (req, res) {
