@@ -1,0 +1,9 @@
+extend layout
+
+block content
+  .form
+    h1 Add subscription
+
+    form(method='post', action='/subscription/add')
+      input(type='text', name='url', placeholder='url')
+      button(type='submit') Add

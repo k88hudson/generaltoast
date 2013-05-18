@@ -73,7 +73,6 @@ a {
 
 #header a, #side-actions a {
     background-color: #f1f1f1;
-    display: block;
     float: left;
     font-family: 'BebasNeueRegular', Arial, sans-serif;
     font-size: 25px;
@@ -119,7 +118,7 @@ a {
 #wrapper {
     height: 100%;
     margin: 0 auto;
-    max-width: 900px;
+    max-width: 1500px;
     min-width: 300px;
     position: relative;
 }
@@ -137,7 +136,7 @@ form {
     float: left;
     margin-top: 20px;
     min-width: 280px;
-    width: 50%;
+    width: 43%;
 }
 
 .content {
@@ -158,15 +157,10 @@ textarea {
 }
 
 .messages {
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
-.messages > a.article {
-    display: block;
-    height: 100%;
-}
-
-.messages article {
+.messages article, .subscriptions article {
     background-color: #f8f9fa;
     border-bottom: 20px solid rgba(255, 255, 255, 0.65);
     color: #444;
@@ -178,7 +172,7 @@ textarea {
     position: relative;
 }
 
-.messages p {
+.messages p, .subscriptions p {
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -254,6 +248,12 @@ ul.links a {
     display: none;
 }
 
+@media only screen and (min-width: 371px) and (max-width: 800px) {
+    .messages {
+        clear: both;
+    }
+}
+
 @media only screen and (max-width: 370px) {
     .messages {
         margin-right: 0;
@@ -265,6 +265,10 @@ ul.links a {
 
     form {
         margin: 80px 0 0;
+    }
+
+    .messages {
+        margin-top: 60px;
     }
 
     .container.right {

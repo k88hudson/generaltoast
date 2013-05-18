@@ -8,14 +8,17 @@ define(['jquery', 'meat'],
 
   var checkUrl = function () {
     var url = body.data('url');
-    if (url.indexOf('/post/') > -1 || url.indexOf('/edit/') > -1) {
-      body.find('.container.right').addClass('hidden');
-      meat.getOne(body);
-    } else if (url.indexOf('/admin/') > -1 || url.indexOf('/add') > -1) {
-      return;
-    } else {
-      body.find('.container.right').removeClass('hidden');
-      meat.getAll();
+
+    if (url) {
+      if (url.indexOf('/post/') > -1 || url.indexOf('/edit/') > -1) {
+        body.find('.container.right').addClass('hidden');
+        meat.getOne(body);
+      } else if (url.indexOf('/recent') > -1) {
+        body.find('.container.right').removeClass('hidden');
+        meat.getAll();
+      } else {
+        return;
+      }
     }
   }
 
@@ -35,15 +38,14 @@ define(['jquery', 'meat'],
         data: { assertion: assertion },
         success: function (res, status, xhr) {
           localStorage.setItem('personaEmail', res.email);
-          document.location.href = '/';
+          body.find('#header .sub').addClass('hidden');
+          body.find('#header .manage').removeClass('hidden');
+          body.find('#side-actions').removeClass('hidden');
+          body.attr('data-url', '/recent');
+          checkUrl();
         },
         error: function(res, status, xhr) {
-          self.status
-            .addClass('error')
-            .text('There was an error logging in')
-            .addClass('on');
-
-          settings.statusTimer(self.status);
+          console.log('error logging in');
         }
       });
     },
