@@ -8,13 +8,15 @@ html
     link(rel='shortcut icon', href='/images/favicon.png')
     link(rel='stylesheet', href='/stylesheets/main.css')
 
-  body
+  body(data-url='#{url}')
     #wrapper
       .content
         #header
+          a(href='/') /
+          a(href='/recent') Subscribe
           if session.isAdmin
             a(href='/add') Add new
-            a(href='#', id='logout') Log out
+            a(href='javascript:;', data-action='logout') Log out
 
         block content
         #footer

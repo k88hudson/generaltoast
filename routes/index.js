@@ -4,19 +4,28 @@ module.exports = function (app, nconf, isAdmin) {
   var Meatspace = require('meatspace');
   var whitelist = require('../whitelist');
 
+  var isEditor = function (req) {
+    if (req.session && req.session.email &&
+        whitelist.indexOf(req.session.email) > -1) {
+      return true;
+    }
+
+    return false;
+  };
+
   var meat = new Meatspace({
     fullName: nconf.get('full_name'),
     postUrl: nconf.get('url'),
-    db: 1
+    db: nconf.get('db')
   });
 
   app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', { url: null });
   });
 
-  app.get('/recent.json', function (req, res) {
+  app.get('/recent', function (req, res) {
     meat.shareRecent(function (err, posts) {
-      res.json({ posts: posts });
+      res.send({ posts: posts, isAdmin: isEditor });
     });
   });
 
@@ -24,27 +33,40 @@ module.exports = function (app, nconf, isAdmin) {
     meat.get(req.params.id, function (err, post) {
       if (err || (!req.session.email && post.meta.isPrivate)) {
         res.status(404);
-        res.json({ message: 'not found' });
+        res.format({
+          html: function () {
+            next();
+          },
+          json: function () {
+            res.send({ message: 'not found' });
+          }
+        });
       } else {
-        res.json({ post: post });
+        res.format({
+          html: function () {
+            res.render('index', { url: '/post/' + req.params.id });
+          },
+          json: function () {
+            res.send({ post: post, isAdmin: isEditor(req) });
+          }
+        });
       }
     });
   });
 
   app.get('/admin', function (req, res) {
-    res.render('admin');
+    res.render('admin', { url: null });
   });
 
   app.get('/all', function (req, res, next) {
-    if (req.session && req.session.email &&
-        whitelist.indexOf(req.session.email) > -1) {
+    if (isEditor(req)) {
       req.session.isAdmin = true;
       meat.getAll(function (err, posts) {
         if (err) {
           res.status(404);
           res.json({ message: 'not found' });
         } else {
-          res.json({ posts: posts });
+          res.json({ posts: posts, isAdmin: true });
         }
       });
     } else {
@@ -54,19 +76,30 @@ module.exports = function (app, nconf, isAdmin) {
           res.status(404);
           res.json({ message: 'not found' });
         } else {
-          res.json({ posts: posts });
+          res.json({ posts: posts, isAdmin: false });
         }
       });
     }
   });
 
   app.get('/add', isAdmin, function (req, res) {
-    res.render('add');
+    res.render('add', { url: null, isAdmin: true });
   });
 
   app.get('/edit/:id', isAdmin, function (req, res) {
     meat.get(req.params.id, function (err, post) {
-      res.json({ post: post });
+      var postUrl = '';
+      if (post.content.urls.length > 0) {
+        postUrl = post.content.urls[0].url;
+      }
+
+      res.render('edit', {
+        post: post,
+        postUrl: postUrl,
+        geolocation: post.meta.geolocation || '',
+        url: '/edit/' + post.id,
+        isAdmin: true
+      });
     });
   });
 
@@ -103,15 +136,55 @@ module.exports = function (app, nconf, isAdmin) {
   });
 
   app.post('/edit/:id', isAdmin, function (req, res) {
-    res.redirect('/edit/' + id);
+    meat.get(req.params.id, function (err, post) {
+      if (err) {
+        res.status(400);
+        res.json({ message: err.toString() });
+      } else {
+        post.content.message = req.body.message;
+        if (req.body.url) {
+          post.content.urls[0] = {
+            title: req.body.url,
+            url: req.body.url
+          };
+        } else {
+          post.content.urls = [];
+        }
+
+        post.meta.isPrivate = req.body.is_private || false;
+      }
+
+      meat.update(post, function (err, post) {
+        if (err) {
+          res.status(400);
+          res.json({ message: err.toString() });
+        } else {
+          res.redirect('/edit/' + post.id);
+        }
+      });
+    });
   });
 
   app.post('/delete/:id', isAdmin, function (req, res) {
-    res.redirect('/all');
+    meat.del(req.params.id, function (err, status) {
+      if (err) {
+        res.status(400);
+        res.json({ message: err.toString() });
+      } else {
+        res.json({ message: 'deleted' });
+      }
+    });
   });
 
   app.get('/logout', function (req, res) {
     req.session.reset();
-    res.redirect('/');
+    res.format({
+      html: function () {
+        res.redirect('/');
+      },
+      json: function () {
+        res.send({ message: 'logged out' });
+      }
+    });
   });
 };

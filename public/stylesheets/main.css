@@ -52,6 +52,13 @@ html, body {
     position: relative;
 }
 
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('../fonts/BebasNeue-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 a {
     color: #555;
     text-decoration: none;
@@ -67,26 +74,34 @@ a {
     background-color: #f1f1f1;
     display: block;
     float: left;
+    font-size: 18px;
     margin-right: 5px;
     padding: 5px 10px;
+}
+
+#header a:hover {
+    background-color: #111;
+    color: #eee;
 }
 
 #wrapper {
     height: 100%;
     margin: 0 auto;
-    max-width: 680px;
+    max-width: 700px;
     min-width: 300px;
     position: relative;
 }
 
 .content {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    letter-spacing: 0.01rem;
+    padding: 0 20px 20px;
 }
 
 h1 {
-    color: #72c0c5;
-    font-size: 30px;
+    color: #49d1f8;
+    font-size: 35px;
+    margin-bottom: 20px;
 }
 
 textarea {
@@ -94,50 +109,89 @@ textarea {
     width: 97%;
 }
 
+.messages > a.article {
+    display: block;
+    height: 100%;
+}
+
 .messages article {
-    border: 3px dotted #f1f1f1;
-    color: #666;
-    font-size: 16px;
-    line-height: 19px;
-    margin: 10px 0;
-    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 20px solid rgba(255, 255, 255, 0.65);
+    color: #444;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    padding: 15px 10px;
+    position: relative;
 }
 
 form {
     margin-top: 20px;
 }
 
-input[type="text"] {
+input[type="text"], textarea {
     clear: both;
     display: block;
     float: left;
     margin-bottom: 5px;
-    width: 300px;
+    width: 100%;
 }
 
 input, textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     background-color: #f1f1f1;
     border: 0;
     font-family: Arial, sans-serif;
+    font-size: 16px;
     padding: 10px;
 }
 
 label {
     clear: both;
     float: left;
+    font-size: 20px;
+    margin-top: 5px;
     width: 100%;
 }
 
-button, #login {
+button {
     background-color: #72c575;
     border: 0;
     border-radius: 5px;
     color: #e0ffe1;
+    cursor: pointer;
     float: right;
     font-size: 18px;
     padding: 5px 10px;
 }
 
 article.private {
-    border: 3px dotted #8ca2a3;
+    background-color: #e9eff2;
+}
+
+ul.links {
+    margin: 20px 0 0;
+}
+
+ul.links a {
+    color: #28c6f4;
+}
+
+.actions {
+    bottom: -20px;
+    position: absolute;
+    right: 5px;
+}
+
+.actions a {
+    color: #bbb;
+    padding-left: 15px;
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 18px;
+}
+.permalink:hover {
+    color: #111;
 }
