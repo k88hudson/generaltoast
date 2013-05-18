@@ -65,18 +65,28 @@ a {
 }
 
 #header {
-    float: left;
     margin-bottom: 20px;
-    width: 100%;
+    position: absolute;
+    right: 0;
+    z-index: 2;
 }
 
 #header a {
     background-color: #f1f1f1;
     display: block;
     float: left;
-    font-size: 18px;
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 25px;
+    line-height: 25px;
     margin-right: 5px;
+    outline: none;
     padding: 5px 10px;
+    text-align: center;
+    width: 20px;
+}
+
+#header a.sub {
+    font-size: 45px;
 }
 
 #header a:hover {
@@ -92,21 +102,32 @@ a {
     position: relative;
 }
 
+.container {
+    float: left;
+    margin-top: 20px;
+    min-width: 280px;
+    width: 50%;
+}
+
 .content {
     font-family: 'BebasNeueRegular', Arial, sans-serif;
     letter-spacing: 0.01rem;
     padding: 0 20px 20px;
 }
 
-h1 {
+h1, h2 {
     color: #49d1f8;
     font-size: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 textarea {
     height: 100px;
     width: 97%;
+}
+
+.messages {
+    margin-right: 20px;
 }
 
 .messages > a.article {
@@ -122,6 +143,8 @@ textarea {
     font-size: 17px;
     line-height: 20px;
     margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 15px 10px;
     position: relative;
 }
@@ -194,4 +217,14 @@ ul.links a {
 }
 .permalink:hover {
     color: #111;
+}
+
+@media only screen and (max-width: 320px) {
+    .messages {
+        margin-right: 0;
+    }
+
+    .container.right {
+        margin-top: 20px;
+    }
 }

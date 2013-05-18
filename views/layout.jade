@@ -12,8 +12,8 @@ html
     #wrapper
       .content
         #header
-          a(href='/') /
-          a(href='/recent') Subscribe
+          a(href='/', title='Home') /
+          a(href='/recent', title='Subscribe to this', class='sub') +
           if session.isAdmin
             a(href='/add') Add new
             a(href='javascript:;', data-action='logout') Log out
