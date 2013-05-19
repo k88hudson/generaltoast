@@ -18,9 +18,17 @@ define(['jquery'],
     if (post.content.urls) {
       for (var i = 0; i < post.content.urls.length; i ++) {
         var url = post.content.urls[i];
+        var result = '';
 
-        urls.push('<li><a href="' + url.url + '" title="' +
-          url.title + '">' + url.title + '</a></li>');
+        if (url.url.match(/\.[jpg|jpeg|gif|png]\??/)) {
+          result = '<a href="' + url.url + '" title="' +
+            url.title + '"><img src="' + url.url + '"></a>';
+        } else {
+          result = '<a href="' + url.url + '" title="' +
+            url.title + '">' + url.title + '</a>';
+        }
+
+        urls.push('<li>' + result + '</li>');
       }
     }
 
@@ -35,15 +43,17 @@ define(['jquery'],
     }
 
     if (isSubscription) {
-      permalink = '<a href="javascript:;" data-action="share" data-url="' +
-        post.meta.originUrl + '">share</a>';
+      if (body.data('authenticated')) {
+        permalink = '<a href="javascript:;" data-action="share" data-url="' +
+          post.meta.originUrl + '">share</a>';
+      }
     } else {
       permalink = '<a href="javascript:;" ' +
         'data-action="get-post" data-url="/post/' + post.id + '" ' +
         'class="permalink">permalink</a>';
     }
 
-    if (post.meta.isShared) {
+    if (post.meta.isShared || isSubscription) {
       shared = '<a href="' + post.meta.originUrl + '">origin</a>';
     }
 

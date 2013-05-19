@@ -1,7 +1,13 @@
 extend layout
 
 block content
-  h1 Subscriptions
-  ul.subscriptions
-    for sub in subscriptions
-      li= sub
+  .container
+    h1 Subscriptions
+    ul.subscriptions
+      for sub in subscriptions
+        li
+          a(href='#{sub}')= sub
+          .actions
+            a(href='javascript:;', data-action='delete-subscription') Delete
+        li
+          a(href='#{sub}')= sub

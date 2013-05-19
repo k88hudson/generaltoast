@@ -100,6 +100,11 @@ define(['jquery', 'meat'],
         ev.preventDefault();
         meat.share(self);
         break;
+
+      case 'delete-subscription':
+        ev.preventDefault();
+        meat.deleteSubscription(self);
+        break;
     }
   });
 });

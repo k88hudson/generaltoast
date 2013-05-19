@@ -32,5 +32,7 @@ require('express-persona')(app, {
 
 // routes
 require("./routes")(app, nconf, notLoggedIn, isAdmin);
+require("./routes/posts")(app, nconf, isAdmin);
+require("./routes/subscriptions")(app, nconf, isAdmin);
 
 app.listen(process.env.PORT || nconf.get('port'));

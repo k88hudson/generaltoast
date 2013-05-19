@@ -124,11 +124,13 @@ a {
 }
 
 .form {
-    margin-top: 14px;
+    float: left;
+    margin-top: 20px;
+    max-width: 700px;
+    width: 70%;
 }
 
 form {
-    margin: 0 27% 0 0;
     max-width: 800px;
 }
 
@@ -147,8 +149,8 @@ form {
 
 h1, h2 {
     color: #49d1f8;
-    font-size: 35px;
-    margin: 10px 0;
+    font-size: 27px;
+    margin: 8px 0 5px;
 }
 
 textarea {
@@ -157,7 +159,7 @@ textarea {
 }
 
 .messages {
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .messages article, .subscriptions article {
@@ -175,6 +177,10 @@ textarea {
 .messages p, .subscriptions p {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.messages .links img {
+    width: 100%;
 }
 
 input[type="text"], textarea {
@@ -210,9 +216,12 @@ button {
     border-radius: 5px;
     color: #e0ffe1;
     cursor: pointer;
-    float: right;
     font-size: 18px;
     padding: 5px 10px;
+}
+
+form button {
+    float: right;
 }
 
 article.private {
@@ -244,13 +253,37 @@ ul.links a {
     color: #111;
 }
 
+ul.subscriptions li {
+    background-color: #eee;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding: 7px 10px;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+ul.subscriptions li a {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+ul.subscriptions li a:hover {
+    color: #111;
+}
+
 .hidden {
     display: none;
 }
 
 @media only screen and (min-width: 371px) and (max-width: 800px) {
-    .messages {
+    .container {
         clear: both;
+        width: 83%;
+    }
+
+    ul.subscriptions li {
+        width: 80%;
     }
 }
 
@@ -264,14 +297,28 @@ ul.links a {
     }
 
     form {
-        margin: 80px 0 0;
+        margin: 50px 0 0;
+        width: 275px;
     }
 
-    .messages {
-        margin-top: 60px;
+    h1, h2 {
+        font-size: 38px;
+        line-height: 33px;
+    }
+
+    h1 {
+        margin-top: 22px;
+    }
+
+    .messages, ul.subscriptions {
+        margin-top: 50px;
     }
 
     .container.right {
         margin-top: 20px;
+    }
+
+    ul.subscriptions li {
+        width: 260px;
     }
 }
