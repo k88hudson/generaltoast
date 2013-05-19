@@ -4,9 +4,10 @@ block content
   .form
     h1 Add new
 
-    form(method='post', action='/add')
+    form(method='post', action='/add', enctype='multipart/form-data')
       textarea(name='message')
       input(type='text', name='url', placeholder='url')
+      input(type='file', name='photo')
       input(type='hidden', name='geolocation')
       label(for='is_private')
         span Is private?

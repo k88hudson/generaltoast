@@ -3,7 +3,14 @@
 module.exports = function (app, nconf, isAdmin) {
   var Meatspace = require('meatspace');
   var request = require('request');
+  var knox = require('knox');
+  var MultiPartUpload = require('knox-mpu');
+  var im = require('imagemagick');
+
   var utils = require('../lib/utils');
+
+  var PHOTO_WIDTH = 400;
+  var upload = null;
 
   var meat = new Meatspace({
     fullName: nconf.get('full_name'),
@@ -106,6 +113,87 @@ module.exports = function (app, nconf, isAdmin) {
     });
   });
 
+  var savePost = function (req, res, message, photoUrl, next) {
+    if (req.body.url) {
+      message.content.urls.push({
+        title: req.body.url,
+        url: req.body.url
+      });
+    }
+
+    if (photoUrl) {
+      message.content.urls.push({
+        title: photoUrl,
+        url: photoUrl
+      });
+    }
+
+    meat.create(message, function (err, post) {
+      if (err) {
+        callback(err);
+      } else {
+        message.meta.originUrl = nconf.get('domain') + ':' + nconf.get('authPort') +
+          '/post/' + post.id;
+        meat.update(message, function (err, post) {
+          if (err) {
+            res.status(400);
+            next(err);
+          } else {
+            message.meta.originUrl = nconf.get('domain') + ':' + nconf.get('authPort') +
+              '/post/' + post.id;
+            meat.update(message, function (err, post) {
+              if (err) {
+                res.status(400);
+                next(err);
+              } else {
+                res.redirect('/');
+              }
+            })
+          }
+        })
+      }
+    });
+  };
+
+  var saveAndUpload = function (req, res, message, next) {
+    if (req.files && req.files.photo && req.files.photo.size > 0) {
+      im.resize({
+        srcPath: req.files.photo.path,
+        dstPath: req.files.photo.path,
+        width: PHOTO_WIDTH
+      }, function (err, stdout, stderr) {
+        if (err) {
+          res.status(400);
+          next(err);
+        } else {
+          var filename = 'post_' + (new Date().getTime().toString()) + '.' +
+            req.files.photo.name.split('.').pop();
+          var s3 = knox.createClient({
+            key: nconf.get('s3_key'),
+            secret: nconf.get('s3_secret'),
+            bucket: nconf.get('s3_bucket')
+          });
+
+          upload = new MultiPartUpload({
+            client: s3,
+            objectName: filename,
+            file: req.files.photo.path
+
+          }, function(err, r) {
+            if (err) {
+              res.status(400);
+              next(err);
+            } else {
+              savePost(req, res, message, nconf.get('s3_url') + filename, next);
+            }
+          });
+        }
+      });
+    } else {
+      savePost(req, res, message, false, next);
+    }
+  };
+
   app.post('/add', isAdmin, function (req, res, next) {
     var message = {
       content: {
@@ -120,30 +208,7 @@ module.exports = function (app, nconf, isAdmin) {
       shares: []
     };
 
-    if (req.body.url) {
-      message.content.urls.push({
-        title: req.body.url,
-        url: req.body.url
-      });
-    }
-
-    meat.create(message, function (err, post) {
-      if (err) {
-        res.status(400);
-        next(err);
-      } else {
-        message.meta.originUrl = nconf.get('domain') + ':' + nconf.get('authPort') +
-          '/post/' + post.id;
-        meat.update(message, function (err, post) {
-          if (err) {
-            res.status(400);
-            next(err);
-          } else {
-            res.redirect('/');
-          }
-        })
-      }
-    });
+    saveAndUpload(req, res, message, next);
   });
 
   app.post('/edit/:id', isAdmin, function (req, res) {

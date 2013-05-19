@@ -178,6 +178,7 @@ textarea {
 }
 
 .messages .links img {
+    max-width: 400px;
     width: 100%;
 }
 
