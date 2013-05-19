@@ -231,6 +231,10 @@ ul.links {
     margin: 20px 0 0;
 }
 
+ul.links li {
+    overflow: hidden;
+}
+
 ul.links a {
     color: #28c6f4;
 }
