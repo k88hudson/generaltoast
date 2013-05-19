@@ -15,18 +15,12 @@ html
         #footer
     #header
       a(href='/', title='Home') /
-      if session.isAdmin
+      if !session.isAdmin
         a(href='/recent', title='Subscribe to this', class='sub') +
-        a(href='/subscription/manage', title='Manage subscriptions', class='manage hidden') s
       else
-        a(href='/recent', title='Subscribe to this', class='sub hidden') +
-        a(href='/subscription/manage', title='Manage subscriptions', class='manage') s
+        a(href='/subscription/manage', title='Manage subscriptions') s
     if session.isAdmin
       #side-actions
-        a(href='/add') Add new
-        a(href='javascript:;', data-action='logout') Log out
-    else
-      #side-actions.hidden
         a(href='/add') Add new
         a(href='javascript:;', data-action='logout') Log out
 

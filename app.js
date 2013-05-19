@@ -10,7 +10,7 @@ nconf.argv().env().file({ file: 'local.json' });
 
 /* Filters for routes */
 
-var isAdmin = function(req, res, next) {
+var isAdmin = function (req, res, next) {
   if (req.session.email && whitelist.indexOf(req.session.email) > -1) {
     next();
   } else {
@@ -18,11 +18,19 @@ var isAdmin = function(req, res, next) {
   }
 };
 
+var notLoggedIn = function (req, res, next) {
+  if (req.session.email) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+}
+
 require('express-persona')(app, {
   audience: nconf.get('domain') + ':' + nconf.get('authPort')
 });
 
 // routes
-require("./routes")(app, nconf, isAdmin);
+require("./routes")(app, nconf, notLoggedIn, isAdmin);
 
 app.listen(process.env.PORT || nconf.get('port'));

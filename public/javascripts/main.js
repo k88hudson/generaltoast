@@ -7,13 +7,13 @@ define(['jquery', 'meat'],
   var currentUser = localStorage.getItem('personaEmail');
 
   var checkUrl = function () {
-    var url = body.data('url');
+    var url = body.attr('data-url');
 
     if (url) {
       if (url.indexOf('/post/') > -1 || url.indexOf('/edit/') > -1) {
         body.find('.container.right').addClass('hidden');
         meat.getOne(body);
-      } else if (url.indexOf('/recent') > -1) {
+      } else if (url.indexOf('/recent') > -1 || url === '/') {
         body.find('.container.right').removeClass('hidden');
         meat.getAll();
       } else {
@@ -38,11 +38,7 @@ define(['jquery', 'meat'],
         data: { assertion: assertion },
         success: function (res, status, xhr) {
           localStorage.setItem('personaEmail', res.email);
-          body.find('#header .sub').addClass('hidden');
-          body.find('#header .manage').removeClass('hidden');
-          body.find('#side-actions').removeClass('hidden');
-          body.attr('data-url', '/recent');
-          checkUrl();
+          window.location.reload();
         },
         error: function(res, status, xhr) {
           console.log('error logging in');
@@ -98,6 +94,11 @@ define(['jquery', 'meat'],
       case 'delete-post':
         ev.preventDefault();
         meat.deleteOne(self);
+        break;
+
+      case 'share':
+        ev.preventDefault();
+        meat.share(self);
         break;
     }
   });

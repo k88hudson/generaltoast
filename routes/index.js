@@ -1,8 +1,9 @@
 'use strict';
 
-module.exports = function (app, nconf, isAdmin) {
+module.exports = function (app, nconf, notLoggedIn, isAdmin) {
   var Meatspace = require('meatspace');
   var whitelist = require('../whitelist');
+  var request = require('request');
 
   var isEditor = function (req) {
     if (req.session && req.session.email &&
@@ -54,7 +55,7 @@ module.exports = function (app, nconf, isAdmin) {
     });
   });
 
-  app.get('/admin', function (req, res) {
+  app.get('/admin', notLoggedIn, function (req, res) {
     res.render('admin', { url: null });
   });
 
@@ -162,14 +163,33 @@ module.exports = function (app, nconf, isAdmin) {
     });
   });
 
-  app.post('/add', isAdmin, function (req, res) {
+  app.post('/share', isAdmin, function (req, res, next) {
+    request.get({ url: req.body.url, json: true }, function (err, resp, body) {
+      if (err) {
+        res.status(404);
+        next();
+      } else {
+        body.post.meta.originUrl = req.body.url;
+        meat.share(body.post, meat.postUrl, function (err, post) {
+          console.log(post)
+          if (err) {
+            res.status(400);
+            next(err);
+          } else {
+            res.json({ post: post });
+          }
+        });
+      }
+    });
+  });
+
+  app.post('/add', isAdmin, function (req, res, next) {
     var message = {
       content: {
         message: req.body.message,
         urls: []
       },
       meta: {
-        originUrl: meat.postUrl,
         location: req.body.geolocation,
         isPrivate: req.body.is_private || false,
         isShared: false
@@ -187,9 +207,18 @@ module.exports = function (app, nconf, isAdmin) {
     meat.create(message, function (err, post) {
       if (err) {
         res.status(400);
-        res.json({ message: err.toString() });
+        next(err);
       } else {
-        res.redirect('/');
+        message.meta.originUrl = nconf.get('domain') + ':' + nconf.get('authPort') +
+          '/post/' + post.id;
+        meat.update(message, function (err, post) {
+          if (err) {
+            res.status(400);
+            next(err);
+          } else {
+            res.redirect('/');
+          }
+        })
       }
     });
   });

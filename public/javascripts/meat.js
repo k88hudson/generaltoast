@@ -6,6 +6,7 @@ define(['jquery'],
 
   var generatePost = function (post, admin, isSubscription) {
     var isPrivate = '';
+    var shared = '';
     var permalink = '';
     var isAdmin = '';
     var urls = [];
@@ -34,16 +35,21 @@ define(['jquery'],
     }
 
     if (isSubscription) {
-      permalink = '<a href="' + post.postUrl + '" class="permalink">';
+      permalink = '<a href="javascript:;" data-action="share" data-url="' +
+        post.meta.originUrl + '">share</a>';
     } else {
       permalink = '<a href="javascript:;" ' +
         'data-action="get-post" data-url="/post/' + post.id + '" ' +
-        'class="permalink">';
+        'class="permalink">permalink</a>';
+    }
+
+    if (post.meta.isShared) {
+      shared = '<a href="' + post.meta.originUrl + '">origin</a>';
     }
 
     return $('<article id="post_' + post.id + '" class="article ' +
       isPrivate + '"><p>' + post.content.message + '</p>' + urls +
-      '<div class="actions">' + isAdmin + permalink + 'permalink</a></div></article>');
+      '<div class="actions">' + isAdmin + permalink + shared + '</div></article>');
   };
 
   var self = {
@@ -83,7 +89,13 @@ define(['jquery'],
 
     deleteOne: function (self) {
       $.post(self.data('url'), function (data) {
-        document.location.href = '/';
+        self.closest('article').addClass('hidden');
+      });
+    },
+
+    share: function (self) {
+      $.post('/share', { url: self.data('url') }, function (data) {
+        body.find('.messages').prepend(generatePost(data.post, true, false));
       });
     }
   };
