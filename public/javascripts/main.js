@@ -38,7 +38,7 @@ define(['jquery', 'meat'],
         data: { assertion: assertion },
         success: function (res, status, xhr) {
           localStorage.setItem('personaEmail', res.email);
-          window.location.reload();
+          window.location.reload(true);
         },
         error: function(res, status, xhr) {
           console.log('error logging in');

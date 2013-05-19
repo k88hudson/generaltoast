@@ -12,7 +12,14 @@ module.exports = function (app, nconf, notLoggedIn, isAdmin) {
   });
 
   app.get('/', function (req, res) {
-    res.render('index', { url: '/recent', isAdmin: utils.isEditor(req) });
+    var isAdmin = false;
+
+    if (utils.isEditor(req)) {
+      isAdmin = true;
+      req.session.isAdmin = true;
+    }
+
+    res.render('index', { url: '/recent', isAdmin: isAdmin });
   });
 
   app.get('/admin', notLoggedIn, function (req, res) {
