@@ -273,9 +273,7 @@ ul.subscriptions li a:hover {
 }
 
 .hidden {
-    opacity: 0;
-    transition: 0.5s;
-    -webkit-transition: 0.5s;
+    display: none;
 }
 
 #footer {

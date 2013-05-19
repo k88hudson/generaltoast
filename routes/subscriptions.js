@@ -11,6 +11,7 @@ module.exports = function (app, nconf, isAdmin) {
   });
 
   app.get('/subscription/all', function (req, res) {
+    var subscriptionMax = 20;
     meat.getSubscriptions(function (err, subscriptions) {
       if (err) {
         res.status(400);
@@ -30,7 +31,7 @@ module.exports = function (app, nconf, isAdmin) {
               }
             }
 
-            if (count === subscriptions.length) {
+            if (count === subscriptions.length || count === subscriptionMax) {
               res.json({ posts: posts });
             }
           });
