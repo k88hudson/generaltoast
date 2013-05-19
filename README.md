@@ -15,6 +15,8 @@ This is a sample micro[b]log app using [meatspace](https://npmjs.org/package/mea
 
 whitelist.json contains emails that are allowed to manage posts.
 
+Include your Amazone S3 key, secret and bucket in local.json so that you can upload photos.
+
 ### Install and start redis
 
 > brew install redis
