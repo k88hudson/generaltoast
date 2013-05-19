@@ -7,5 +7,6 @@
     "session_cookie": "session",
     "full_name": "your name",
     "url": "your url",
-    "db": 1
+    "db": 1,
+    "debug": true
 }
