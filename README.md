@@ -25,3 +25,7 @@ Include your Amazone S3 key, secret and bucket in local.json so that you can upl
 ## Run the server
 
 > node app.js
+
+## Subscribing to other meatspaces
+
+When you click on the 'S' in the top right hand corner after logging in, you can add urls to JSON feeds from other meatspace urls. For example, visiting (http://meatspace.generalgoods.net)[http://meatspace.generalgoods.net] and clicking on '+' gives you the feed for that site. Add that url to your subscription and your site will pull in the latest posts.
