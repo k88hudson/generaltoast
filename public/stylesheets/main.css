@@ -125,7 +125,6 @@ a {
 
 .form {
     float: left;
-    margin-top: 20px;
     max-width: 700px;
     width: 70%;
 }
@@ -136,7 +135,6 @@ form {
 
 .container {
     float: left;
-    margin-top: 20px;
     min-width: 280px;
     width: 43%;
 }
@@ -242,23 +240,23 @@ ul.links a {
     right: 5px;
 }
 
-.actions a {
+ul.subscriptions .actions a, .actions a {
     color: #bbb;
     padding-left: 15px;
     font-family: 'BebasNeueRegular', Arial, sans-serif;
     font-size: 18px;
 }
 
-.actions a:hover {
+ul.subscriptions .actions a:hover, .actions a:hover {
     color: #111;
 }
 
 ul.subscriptions li {
-    background-color: #eee;
+    background-color: #f8f9fa;
+    border-bottom: 20px solid rgba(255, 255, 255, 0.65);
     margin-bottom: 5px;
-    overflow: hidden;
     padding: 7px 10px;
-    text-overflow: ellipsis;
+    position: relative;
     width: 100%;
 }
 
@@ -266,6 +264,8 @@ ul.subscriptions li a {
     font-family: Arial, sans-serif;
     font-size: 16px;
     line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 ul.subscriptions li a:hover {
@@ -273,7 +273,15 @@ ul.subscriptions li a:hover {
 }
 
 .hidden {
-    display: none;
+    opacity: 0;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+
+#footer {
+    clear: both;
+    float: left;
+    margin: 20px;
 }
 
 @media only screen and (min-width: 371px) and (max-width: 800px) {
@@ -281,13 +289,13 @@ ul.subscriptions li a:hover {
         clear: both;
         width: 83%;
     }
-
-    ul.subscriptions li {
-        width: 80%;
-    }
 }
 
 @media only screen and (max-width: 370px) {
+    .container, .form {
+        margin-top: 20px;
+    }
+
     .messages {
         margin-right: 0;
     }

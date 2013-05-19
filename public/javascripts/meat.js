@@ -107,6 +107,12 @@ define(['jquery'],
       $.post('/share', { url: self.data('url') }, function (data) {
         body.find('.messages').prepend(generatePost(data.post, true, false));
       });
+    },
+
+    deleteSubscription: function (self) {
+      $.post('/subscription/unsubscribe', { url: self.data('url') }, function (data) {
+        self.closest('li').addClass('hidden');
+      });
     }
   };
 

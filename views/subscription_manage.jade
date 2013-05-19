@@ -1,13 +1,19 @@
 extend layout
 
 block content
-  .container
-    h1 Subscriptions
+  .form
+    h1 Add
+
+    form(method='post', action='/subscription/add')
+      input(type='text', name='url', placeholder='url')
+      button(type='submit') Subscribe
+
+  .form
+    h2 Current Subscriptions
+
     ul.subscriptions
       for sub in subscriptions
         li
           a(href='#{sub}')= sub
           .actions
-            a(href='javascript:;', data-action='delete-subscription') Delete
-        li
-          a(href='#{sub}')= sub
+            a(href='javascript:;', data-url="#{sub}", data-action='delete-subscription') Unsubscribe
