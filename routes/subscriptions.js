@@ -19,7 +19,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
           meat.getSubscriptionRecent(subscriptions[i], function (err, pArr) {
             if (!err) {
               if (!posts) {
-                posts = pArr;
+                posts = pArr.reverse();
               } else {
                 posts = posts.concat(pArr).reverse();
               }
