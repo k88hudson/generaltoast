@@ -24,7 +24,7 @@ define(['jquery', 'meat'],
 
   checkUrl();
 
-  if (navigator.geolocation) {
+  if (navigator.geolocation && body.data('page') === 'edit') {
     navigator.geolocation.getCurrentPosition(function (loc) {
       body.find('form input[name="geolocation"]').val(loc.coords.latitude +
         ', ' + loc.coords.longitude);

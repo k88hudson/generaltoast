@@ -57,7 +57,8 @@ module.exports = function (app, meat, nconf, isAdmin) {
         res.render('subscription_manage', {
           url: null,
           isAdmin: true,
-          subscriptions: subscriptions
+          subscriptions: subscriptions,
+          page: 'subscriptions'
         });
       }
     });

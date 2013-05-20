@@ -11,7 +11,10 @@ module.exports = function (app, nconf, notLoggedIn, isAdmin) {
       req.session.isAdmin = true;
     }
 
-    res.render('index', { url: '/recent', isAdmin: isAdmin });
+    res.render('index', {
+      url: '/recent', isAdmin: isAdmin,
+      page: 'index'
+    });
   });
 
   app.get('/admin', notLoggedIn, function (req, res) {

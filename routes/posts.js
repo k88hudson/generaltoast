@@ -39,7 +39,10 @@ module.exports = function (app, meat, nconf, isAdmin) {
       } else {
         res.format({
           html: function () {
-            res.render('index', { url: '/post/' + req.params.id });
+            res.render('index', {
+              url: '/post/' + req.params.id,
+              page: 'post'
+            });
           },
           json: function () {
             res.send({ post: post, isAdmin: utils.isEditor(req) });
@@ -74,7 +77,11 @@ module.exports = function (app, meat, nconf, isAdmin) {
   });
 
   app.get('/add', isAdmin, function (req, res) {
-    res.render('add', { url: null, isAdmin: true });
+    res.render('add', {
+      url: null,
+      isAdmin: true,
+      page: 'edit'
+    });
   });
 
   app.get('/edit/:id', isAdmin, function (req, res) {
@@ -89,7 +96,8 @@ module.exports = function (app, meat, nconf, isAdmin) {
         postUrl: postUrl,
         geolocation: post.meta.location || '',
         url: '/edit/' + post.id,
-        isAdmin: true
+        isAdmin: true,
+        page: 'edit'
       });
     });
   });
