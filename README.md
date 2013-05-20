@@ -8,6 +8,10 @@ This is a sample micro[b]log app using [meatspace](https://npmjs.org/package/mea
 
 > git clone git://github.com/ednapiranha/generaltoast.git
 
+### Install grunt
+
+> npm install -g grunt-cli
+
 ### Copy over json files and adjust values as needed
 
 > cp local.json-dist local.json
@@ -21,6 +25,14 @@ Include your Amazone S3 key, secret and bucket in local.json so that you can upl
 
 > brew install redis
 > redis-server
+
+### Differences from dev and prod
+
+If you run this in dev, you don't need to do anything by default. If you run this in production:
+
+* set your NODE_ENV to 'prod' (as in settings.js).
+* set local.json's debug to true
+* run grunt to minify js and css files
 
 ## Run the server
 
