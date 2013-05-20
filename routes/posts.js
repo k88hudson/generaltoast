@@ -177,8 +177,8 @@ module.exports = function (app, nconf, isAdmin) {
           upload = new MultiPartUpload({
             client: s3,
             objectName: filename,
-            file: req.files.photo.path
-
+            file: req.files.photo.path,
+            headers: { 'Content-Type': req.files.photo.type }
           }, function(err, r) {
             if (err) {
               res.status(400);
