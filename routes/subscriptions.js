@@ -23,7 +23,9 @@ module.exports = function (app, meat, nconf, isAdmin) {
               } else {
                 posts.concat(pArr);
               }
-              posts.splice(SUBSCRIPTION_MAX, posts.length - SUBSCRIPTION_MAX);
+              if (posts.length > SUBSCRIPTION_MAX) {
+                posts.splice(SUBSCRIPTION_MAX, posts.length - SUBSCRIPTION_MAX);
+              }
             }
 
             if (count === subscriptions.length) {
