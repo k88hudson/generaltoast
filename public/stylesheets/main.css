@@ -201,6 +201,10 @@ input, textarea {
     padding: 10px;
 }
 
+input[type="file"] {
+    margin-bottom: 5px;
+}
+
 label {
     clear: both;
     float: left;
