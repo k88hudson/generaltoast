@@ -87,7 +87,7 @@ module.exports = function (app, nconf, isAdmin) {
       res.render('edit', {
         post: post,
         postUrl: postUrl,
-        geolocation: post.meta.geolocation || '',
+        geolocation: post.meta.location || '',
         url: '/edit/' + post.id,
         isAdmin: true
       });
