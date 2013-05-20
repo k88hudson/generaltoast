@@ -14,7 +14,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
         var posts;
         var count = 0;
 
-        subscriptions.forEach(function (currSubscription, idx) {
+        subscriptions.forEach(function (currSubscription) {
           count ++;
           meat.getSubscriptionRecent(currSubscription, function (err, pArr) {
             if (!err) {
@@ -29,7 +29,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
               }
             }
 
-            if (idx === subscriptions.length - 1) {
+            if (count === subscriptions.length {
               posts = posts.sort(function (a, b) {
                 return parseInt(b.id, 10) - parseInt(a.id, 10);
               });
