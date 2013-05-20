@@ -24,10 +24,12 @@ define(['jquery', 'meat'],
 
   checkUrl();
 
-  navigator.geolocation.getCurrentPosition(function (loc) {
-    body.find('form input[name="geolocation"]').val(loc.coords.latitude +
-      ', ' + loc.coords.longitude);
-  });
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (loc) {
+      body.find('form input[name="geolocation"]').val(loc.coords.latitude +
+        ', ' + loc.coords.longitude);
+    });
+  }
 
   navigator.id.watch({
     loggedInUser: currentUser,
