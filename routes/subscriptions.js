@@ -21,7 +21,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
               if (!posts) {
                 posts = pArr;
               } else {
-                posts.concat(pArr).reverse();
+                posts = posts.concat(pArr).reverse();
               }
             }
 
