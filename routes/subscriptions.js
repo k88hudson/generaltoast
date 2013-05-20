@@ -19,13 +19,16 @@ module.exports = function (app, meat, nconf, isAdmin) {
           meat.getSubscriptionRecent(subscriptions[i], function (err, pArr) {
             if (!err) {
               if (!posts) {
-                posts = pArr.reverse();
+                posts = pArr;
               } else {
-                posts = posts.concat(pArr).reverse();
+                posts.concat(pArr);
               }
             }
 
             if (count === subscriptions.length || count === SUBSCRIPTION_MAX) {
+              posts = posts.sort(function (a, b) {
+                return parseInt(b.id, 10) - parseInt(a.id, 10);
+              });
               res.json({ posts: posts });
             }
           });
