@@ -301,7 +301,7 @@ ul.subscriptions li a:hover {
     }
 
     .messages {
-        margin-right: 0;
+        margin-right: -40px;
     }
 
     #side-actions {
@@ -310,7 +310,7 @@ ul.subscriptions li a:hover {
 
     form {
         margin: 50px 0 0;
-        width: 275px;
+        width: 320px;
     }
 
     h1, h2 {
@@ -328,6 +328,20 @@ ul.subscriptions li a:hover {
 
     .container.right {
         margin-top: 20px;
+    }
+
+    ul.subscriptions li {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .messages {
+        margin-right: 0;
+    }
+
+    form {
+        width: 275px;
     }
 
     ul.subscriptions li {
