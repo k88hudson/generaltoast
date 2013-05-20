@@ -47,7 +47,7 @@ define(['jquery'],
     }
 
     if (isSubscription) {
-      if (body.data('authenticated')) {
+      if (body.data('authenticated') !== 'false') {
         permalink = '<a href="javascript:;" data-action="share" data-url="' +
           post.meta.originUrl + '">share</a>';
       }
