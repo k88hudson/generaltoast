@@ -15,8 +15,8 @@ module.exports = function (app, meat, nconf, isAdmin) {
         var count = 0;
 
         subscriptions.forEach(function (currSubscription) {
-          count ++;
           meat.getSubscriptionRecent(currSubscription, function (err, pArr) {
+            count ++;
             if (!err) {
               if (!posts) {
                 posts = pArr;
