@@ -29,7 +29,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
               }
             }
 
-            if (count === subscriptions.length {
+            if (count === subscriptions.length) {
               posts = posts.sort(function (a, b) {
                 return parseInt(b.id, 10) - parseInt(a.id, 10);
               });
