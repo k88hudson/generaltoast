@@ -14,28 +14,29 @@ module.exports = function (app, meat, nconf, isAdmin) {
         var posts;
         var count = 0;
 
-        for (var i = 0; i < subscriptions.length; i ++) {
+        subscriptions.forEach(function (currSubscription, idx) {
           count ++;
-          meat.getSubscriptionRecent(subscriptions[i], function (err, pArr) {
+          meat.getSubscriptionRecent(currSubscription, function (err, pArr) {
             if (!err) {
               if (!posts) {
                 posts = pArr;
               } else {
-                posts.concat(pArr);
+                posts = posts.concat(pArr);
               }
+
               if (posts.length > SUBSCRIPTION_MAX) {
                 posts.splice(SUBSCRIPTION_MAX, posts.length - SUBSCRIPTION_MAX);
               }
             }
 
-            if (count === subscriptions.length) {
+            if (idx === subscriptions.length - 1) {
               posts = posts.sort(function (a, b) {
                 return parseInt(b.id, 10) - parseInt(a.id, 10);
               });
               res.json({ posts: posts });
             }
           });
-        }
+        });
       }
     });
   });
