@@ -3,7 +3,7 @@
 module.exports = function (app, meat, nconf, isAdmin) {
   var request = require('request');
 
-  var SUBSCRIPTION_MAX = 20;
+  var SUBSCRIPTION_MAX = 19;
 
   app.get('/subscription/all', function (req, res) {
     meat.getSubscriptions(function (err, subscriptions) {
@@ -12,11 +12,25 @@ module.exports = function (app, meat, nconf, isAdmin) {
         next(err);
       } else {
         var posts;
+        var count = 0;
 
         for (var i = 0; i < subscriptions.length; i ++) {
+          count ++;
           meat.getSubscriptionRecent(subscriptions[i], function (err, pArr) {
             if (!err) {
-              res.json({ posts: pArr });
+              if (!posts) {
+                posts = pArr;
+              } else {
+                posts.concat(pArr);
+              }
+              posts.splice(SUBSCRIPTION_MAX, posts.length - SUBSCRIPTION_MAX);
+            }
+
+            if (count === subscriptions.length) {
+              posts = posts.sort(function (a, b) {
+                return parseInt(b.id, 10) - parseInt(a.id, 10);
+              });
+              res.json({ posts: posts });
             }
           });
         }
