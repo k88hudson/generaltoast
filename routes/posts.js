@@ -243,7 +243,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
           res.status(400);
           res.json({ message: err.toString() });
         } else {
-          res.redirect('/edit/' + post.id);
+          res.redirect('/post/' + post.id);
         }
       });
     });
