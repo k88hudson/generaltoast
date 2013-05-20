@@ -12,24 +12,11 @@ module.exports = function (app, meat, nconf, isAdmin) {
         next(err);
       } else {
         var posts;
-        var count = 0;
 
         for (var i = 0; i < subscriptions.length; i ++) {
           meat.getSubscriptionRecent(subscriptions[i], function (err, pArr) {
             if (!err) {
-              if (!posts) {
-                posts = pArr;
-              } else {
-                posts.concat(pArr);
-              }
-              count = count + posts.length;
-            }
-
-            if (count === SUBSCRIPTION_MAX) {
-              posts = posts.sort(function (a, b) {
-                return parseInt(b.id, 10) - parseInt(a.id, 10);
-              });
-              res.json({ posts: posts });
+              res.json({ posts: pArr });
             }
           });
         }
