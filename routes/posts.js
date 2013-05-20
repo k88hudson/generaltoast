@@ -1,7 +1,6 @@
 'use strict';
 
-module.exports = function (app, nconf, isAdmin) {
-  var Meatspace = require('meatspace');
+module.exports = function (app, meat, nconf, isAdmin) {
   var request = require('request');
   var knox = require('knox');
   var MultiPartUpload = require('knox-mpu');
@@ -12,11 +11,12 @@ module.exports = function (app, nconf, isAdmin) {
   var PHOTO_WIDTH = 400;
   var upload = null;
 
-  var meat = new Meatspace({
-    fullName: nconf.get('full_name'),
-    postUrl: nconf.get('url'),
-    db: nconf.get('db')
-  });
+  var escapeHtml = function (text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  };
 
   app.get('/recent', function (req, res) {
     meat.shareRecent(function (err, posts) {
@@ -116,8 +116,8 @@ module.exports = function (app, nconf, isAdmin) {
   var savePost = function (req, res, message, photoUrl, next) {
     if (req.body.url) {
       message.content.urls.push({
-        title: req.body.url,
-        url: req.body.url
+        title: escapeHtml(req.body.url),
+        url: escapeHtml(req.body.url)
       });
     }
 
@@ -197,7 +197,7 @@ module.exports = function (app, nconf, isAdmin) {
   app.post('/add', isAdmin, function (req, res, next) {
     var message = {
       content: {
-        message: req.body.message,
+        message: escapeHtml(req.body.message),
         urls: []
       },
       meta: {

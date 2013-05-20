@@ -3,6 +3,7 @@ var configurations = module.exports;
 var app = express();
 var server = require('http').createServer(app);
 var nconf = require('nconf');
+var Meatspace = require('meatspace');
 var settings = require('./settings')(app, configurations, express);
 var whitelist = require('./whitelist');
 
@@ -26,13 +27,22 @@ var notLoggedIn = function (req, res, next) {
   }
 }
 
+/* Initialize meat */
+
+var meat = new Meatspace({
+  fullName: nconf.get('full_name'),
+  postUrl: nconf.get('url'),
+  db: nconf.get('db'),
+  limit: 20
+});
+
 require('express-persona')(app, {
   audience: nconf.get('domain') + ':' + nconf.get('authPort')
 });
 
 // routes
-require("./routes")(app, nconf, notLoggedIn, isAdmin);
-require("./routes/posts")(app, nconf, isAdmin);
-require("./routes/subscriptions")(app, nconf, isAdmin);
+require('./routes')(app, nconf, notLoggedIn, isAdmin);
+require('./routes/posts')(app, meat, nconf, isAdmin);
+require('./routes/subscriptions')(app, meat, nconf, isAdmin);
 
 app.listen(process.env.PORT || nconf.get('port'));

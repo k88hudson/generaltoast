@@ -11,6 +11,10 @@ define(['jquery'],
     var isAdmin = '';
     var urls = [];
 
+    var breakify = function (text) {
+      return text.replace(/[\n]/gi, '<br>');
+    };
+
     if (post.meta.isPrivate) {
       isPrivate = 'private';
     }
@@ -58,7 +62,7 @@ define(['jquery'],
     }
 
     return $('<article id="post_' + post.id + '" class="article ' +
-      isPrivate + '"><p>' + post.content.message + '</p>' + urls +
+      isPrivate + '"><p>' + breakify(post.content.message) + '</p>' + urls +
       '<div class="actions">' + isAdmin + permalink + shared + '</div></article>');
   };
 

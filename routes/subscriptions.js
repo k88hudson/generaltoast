@@ -1,14 +1,7 @@
 'use strict';
 
-module.exports = function (app, nconf, isAdmin) {
-  var Meatspace = require('meatspace');
+module.exports = function (app, meat, nconf, isAdmin) {
   var request = require('request');
-
-  var meat = new Meatspace({
-    fullName: nconf.get('full_name'),
-    postUrl: nconf.get('url'),
-    db: nconf.get('db')
-  });
 
   app.get('/subscription/all', function (req, res) {
     var subscriptionMax = 20;
