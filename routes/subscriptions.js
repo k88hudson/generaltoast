@@ -31,7 +31,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
 
             if (count === subscriptions.length) {
               posts = posts.sort(function (a, b) {
-                return parseInt(b.id, 10) - parseInt(a.id, 10);
+                return parseInt(b.content.created, 10) - parseInt(a.content.created, 10);
               });
               res.json({ posts: posts });
             }
