@@ -41,7 +41,7 @@ require('express-persona')(app, {
 });
 
 // routes
-require('./routes')(app, nconf, notLoggedIn, isAdmin);
+require('./routes')(app, meat, nconf, notLoggedIn, isAdmin);
 require('./routes/posts')(app, meat, nconf, isAdmin);
 require('./routes/subscriptions')(app, meat, nconf, isAdmin);
 

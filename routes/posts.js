@@ -19,8 +19,11 @@ module.exports = function (app, meat, nconf, isAdmin) {
   };
 
   app.get('/recent', function (req, res) {
-    meat.shareRecent(function (err, posts) {
-      res.send({ posts: posts, isAdmin: utils.isEditor(req) });
+    meat.shareRecent(req.query.start || 0, function (err, posts) {
+      res.json({
+        posts: posts,
+        total: meat.totalPublic
+      });
     });
   });
 
@@ -41,11 +44,16 @@ module.exports = function (app, meat, nconf, isAdmin) {
           html: function () {
             res.render('index', {
               url: '/post/' + req.params.id,
-              page: 'post'
+              page: 'post',
+              prev: false,
+              next: false
             });
           },
           json: function () {
-            res.send({ post: post, isAdmin: utils.isEditor(req) });
+            res.send({
+              post: post,
+              isAdmin: utils.isEditor(req)
+            });
           }
         });
       }
@@ -53,24 +61,37 @@ module.exports = function (app, meat, nconf, isAdmin) {
   });
 
   app.get('/all', function (req, res, next) {
+    var pagination = utils.setPagination(req, meat);
+
     if (utils.isEditor(req)) {
-      req.session.isAdmin = true;
-      meat.getAll(function (err, posts) {
+      meat.getAll(req.query.start || 0, function (err, posts) {
         if (err) {
           res.status(404);
           res.json({ message: 'not found' });
         } else {
-          res.json({ posts: posts, isAdmin: true });
+          res.json({
+            posts: posts,
+            isAdmin: true,
+            prev: pagination.prev,
+            next: pagination.next,
+            total: meat.totalAll
+          });
         }
       });
     } else {
       req.session.reset();
-      meat.shareRecent(function (err, posts) {
+      meat.shareRecent(req.query.start || 0, function (err, posts) {
         if (err) {
           res.status(404);
           res.json({ message: 'not found' });
         } else {
-          res.json({ posts: posts, isAdmin: false });
+          res.json({
+            posts: posts,
+            isAdmin: false,
+            prev: pagination.prev,
+            next: pagination.next,
+            total: meat.totalPublic
+          });
         }
       });
     }
@@ -80,7 +101,9 @@ module.exports = function (app, meat, nconf, isAdmin) {
     res.render('add', {
       url: null,
       isAdmin: true,
-      page: 'edit'
+      page: 'edit',
+      start: 0,
+      total: 0
     });
   });
 
@@ -97,7 +120,9 @@ module.exports = function (app, meat, nconf, isAdmin) {
         geolocation: post.meta.location || '',
         url: '/edit/' + post.id,
         isAdmin: true,
-        page: 'edit'
+        page: 'edit',
+        start: 0,
+        total: 0
       });
     });
   });
@@ -147,18 +172,9 @@ module.exports = function (app, meat, nconf, isAdmin) {
             res.status(400);
             next(err);
           } else {
-            message.meta.originUrl = nconf.get('domain') + ':' + nconf.get('authPort') +
-              '/post/' + post.id;
-            meat.update(message, function (err, post) {
-              if (err) {
-                res.status(400);
-                next(err);
-              } else {
-                res.redirect('/');
-              }
-            })
+            res.redirect('/');
           }
-        })
+        });
       }
     });
   };

@@ -111,7 +111,7 @@ a {
     width: 100%;
 }
 
-#side-actions a:hover {
+#side-actions a:hover, .pagination a:hover {
     background-color: #3e99a4;
 }
 
@@ -282,7 +282,7 @@ ul.subscriptions li a:hover {
     color: #111;
 }
 
-.hidden {
+.hidden, .pagination a.hidden {
     display: none;
 }
 
@@ -290,6 +290,27 @@ ul.subscriptions li a:hover {
     clear: both;
     float: left;
     margin: 20px;
+}
+
+.pagination {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.pagination a {
+    background-color: #59d5bc;
+    color: #fff;
+    font-size: 20px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.pagination .next {
+    float: right;
 }
 
 @media only screen and (min-width: 371px) and (max-width: 800px) {

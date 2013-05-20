@@ -3,8 +3,9 @@
 module.exports = function (app, meat, nconf, isAdmin) {
   var request = require('request');
 
+  var SUBSCRIPTION_MAX = 20;
+
   app.get('/subscription/all', function (req, res) {
-    var subscriptionMax = 20;
     meat.getSubscriptions(function (err, subscriptions) {
       if (err) {
         res.status(400);
@@ -24,7 +25,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
               }
             }
 
-            if (count === subscriptions.length || count === subscriptionMax) {
+            if (count === subscriptions.length || count === SUBSCRIPTION_MAX) {
               res.json({ posts: posts });
             }
           });

@@ -66,18 +66,55 @@ define(['jquery'],
       '<div class="actions">' + isAdmin + permalink + shared + '</div></article>');
   };
 
+  var getRecent = function (paginated) {
+    var prev;
+    var next;
+    var start = document.location.search.split('start=')[1] || 0;
+
+    if (paginated) {
+      if (paginated.hasClass('prev')) {
+        start = parseInt(paginated.attr('data-prev'), 10);
+      } else {
+        start = parseInt(paginated.attr('data-next'), 10);
+      }
+    }
+
+    $.getJSON('/all', {
+      start: start
+    }, function (data) {
+      if (data.posts) {
+        history.pushState(data.posts, 'posts', '/?start=' + start);
+        body.find('.messages').empty();
+
+        for (var i = 0; i < data.posts.length; i ++) {
+          body.find('.messages').append(generatePost(data.posts[i], data.isAdmin, false));
+        }
+
+        if (!data.next) {
+          body.find('.pagination .next').addClass('hidden')
+                                        .attr('href', '/all?start=' + data.next);
+        } else {
+          body.find('.pagination .next').removeClass('hidden')
+                                        .attr('href', '/all?start=' + data.next);
+        }
+
+        if (data.prev === false) {
+          body.find('.pagination .prev').addClass('hidden')
+                                        .attr('href', '/all?start=' + data.prev);
+        } else {
+          body.find('.pagination .prev').removeClass('hidden')
+                                        .attr('href', '/all?start=' + data.prev);
+        }
+
+        body.find('.pagination a').attr('data-prev', data.prev)
+                                  .attr('data-next', data.next);
+      }
+    });
+  };
+
   var self = {
     getAll: function () {
-      $.getJSON('/all', function (data) {
-        if (data.posts) {
-          history.pushState(data.posts, 'posts', '/');
-          body.find('.messages').empty();
-
-          for (var i = 0; i < data.posts.length; i ++) {
-            body.find('.messages').append(generatePost(data.posts[i], data.isAdmin, false));
-          }
-        }
-      });
+      getRecent();
 
       $.getJSON('/subscription/all', function (data) {
         if (data.posts) {
@@ -89,6 +126,10 @@ define(['jquery'],
           }
         }
       });
+    },
+
+    getPaginated: function (self) {
+      getRecent(self);
     },
 
     getOne: function (self) {

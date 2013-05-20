@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (app, nconf, notLoggedIn, isAdmin) {
+module.exports = function (app, meat, nconf, notLoggedIn, isAdmin) {
   var utils = require('../lib/utils');
 
   app.get('/', function (req, res) {
@@ -11,14 +11,19 @@ module.exports = function (app, nconf, notLoggedIn, isAdmin) {
       req.session.isAdmin = true;
     }
 
+    var pagination = utils.setPagination(req, meat);
+
     res.render('index', {
-      url: '/recent', isAdmin: isAdmin,
-      page: 'index'
+      url: '/',
+      isAdmin: isAdmin,
+      page: 'index',
+      prev: pagination.prev,
+      next: pagination.next
     });
   });
 
   app.get('/admin', notLoggedIn, function (req, res) {
-    res.render('admin', { url: null });
+    res.render('admin', { url: null, page: 'admin' });
   });
 
   app.get('/logout', function (req, res) {

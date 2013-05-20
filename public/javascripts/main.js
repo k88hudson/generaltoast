@@ -107,6 +107,11 @@ define(['jquery', 'meat'],
         ev.preventDefault();
         meat.deleteSubscription(self);
         break;
+
+      case 'pagination':
+        ev.preventDefault();
+        meat.getPaginated(self);
+        break;
     }
   });
 });
