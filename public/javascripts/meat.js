@@ -58,7 +58,7 @@ define(['jquery'],
     }
 
     if (post.meta.isShared || isSubscription) {
-      shared = '<a href="' + post.meta.originUrl + '">origin</a>';
+      shared = '<a href="' + post.meta.originUrl + '" target="_blank">origin</a>';
     }
 
     return $('<article id="post_' + post.id + '" class="article ' +
