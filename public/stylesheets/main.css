@@ -177,7 +177,7 @@ textarea {
     text-overflow: ellipsis;
 }
 
-.messages .links img {
+.messages .links img, .subscriptions .links img {
     max-width: 400px;
     width: 100%;
 }
