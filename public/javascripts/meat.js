@@ -24,7 +24,7 @@ define(['jquery'],
         var url = post.content.urls[i];
         var result = '';
 
-        if (url.url.match(/\.[jpg|jpeg|gif|png]\??/)) {
+        if (url.url.match(/\.[jpg|jpeg|gif|png]\??/i)) {
           result = '<a href="' + url.url + '" title="' +
             url.title + '"><img src="' + url.url + '"></a>';
         } else {
