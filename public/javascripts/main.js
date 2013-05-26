@@ -31,10 +31,6 @@ define(['jquery', 'meat'],
     });
   }
 
-  if (!body.data('authenticated')) {
-    navigator.id.logout();
-  }
-
   navigator.id.watch({
     loggedInUser: currentUser,
     onlogin: function (assertion) {
