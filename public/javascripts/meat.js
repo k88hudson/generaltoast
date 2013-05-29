@@ -90,20 +90,20 @@ define(['jquery'],
           body.find('.messages').append(generatePost(data.posts[i], data.isAdmin, false));
         }
 
+        var next = body.find('.pagination .next');
+        next.attr('href', '/all?start=' + data.next)
+            .removeClass('hidden');
+
         if (!data.next) {
-          body.find('.pagination .next').addClass('hidden')
-                                        .attr('href', '/all?start=' + data.next);
-        } else {
-          body.find('.pagination .next').removeClass('hidden')
-                                        .attr('href', '/all?start=' + data.next);
+          next.addClass('hidden');
         }
 
+        var prev = body.find('.pagination .prev');
+        prev.attr('href', '/all?start=' + data.prev)
+            .removeClass('hidden');
+
         if (data.prev === false) {
-          body.find('.pagination .prev').addClass('hidden')
-                                        .attr('href', '/all?start=' + data.prev);
-        } else {
-          body.find('.pagination .prev').removeClass('hidden')
-                                        .attr('href', '/all?start=' + data.prev);
+          prev.addClass('hidden');
         }
 
         body.find('.pagination a').attr('data-prev', data.prev)
