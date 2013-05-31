@@ -41,9 +41,9 @@ define(['jquery'],
     }
 
     if (admin) {
-      isAdmin = '<a href="/edit/' + post.id + '">Edit</a>' +
+      isAdmin = '<a href="/edit/' + post.id + '">edit</a>' +
         '<a href="javascript:;" data-url="/delete/' + post.id +
-        '" data-action="delete-post">Delete</a>';
+        '" data-action="delete-post">delete</a>';
     }
 
     if (isSubscription) {
@@ -91,18 +91,20 @@ define(['jquery'],
         }
 
         var next = body.find('.pagination .next');
-        next.attr('href', '/all?start=' + data.next)
-            .removeClass('hidden');
 
-        if (!data.next) {
+        if (data.next) {
+          next.attr('href', '/all?start=' + data.next)
+              .removeClass('hidden');
+        } else {
           next.addClass('hidden');
         }
 
         var prev = body.find('.pagination .prev');
-        prev.attr('href', '/all?start=' + data.prev)
-            .removeClass('hidden');
 
-        if (data.prev === false) {
+        if (data.prev) {
+          prev.attr('href', '/all?start=' + data.prev)
+              .removeClass('hidden');
+        } else {
           prev.addClass('hidden');
         }
 
@@ -115,6 +117,7 @@ define(['jquery'],
   var self = {
     getAll: function () {
       getRecent();
+      body.find('h1').text('Recent');
 
       $.getJSON('/subscription/all', function (data) {
         if (data.posts) {
@@ -135,6 +138,7 @@ define(['jquery'],
     getOne: function (self) {
       $.getJSON(self.data('url'), function (data) {
         if (data.post) {
+          body.find('h1').text('Post');
           body.find('.container.right').addClass('hidden');
           history.pushState(data.post, 'post ' + data.post.id, '/post/' + data.post.id);
           body.find('.messages').html(generatePost(data.post, data.isAdmin, false));

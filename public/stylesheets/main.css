@@ -214,10 +214,10 @@ label {
 }
 
 button {
-    background-color: #72c575;
+    background-color: #28c6f4;
     border: 0;
     border-radius: 5px;
-    color: #e0ffe1;
+    color: #fff;
     cursor: pointer;
     font-size: 18px;
     padding: 5px 10px;
@@ -311,6 +311,12 @@ ul.subscriptions li a:hover {
 
 .pagination .next {
     float: right;
+}
+
+.cancel {
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
 }
 
 @media only screen and (min-width: 371px) and (max-width: 800px) {

@@ -51,6 +51,13 @@ module.exports = function(app, configurations, express) {
       });
       return;
     });
+  });
+
+  app.configure('development', 'test', function() {
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  });
+
+  app.configure('prod', 'test', function() {
     app.use(function(err, req, res, next) {
       res.status(err.status || 500);
       res.render('500', {
@@ -60,10 +67,6 @@ module.exports = function(app, configurations, express) {
         page: 'error'
       });
     });
-  });
-
-  app.configure('development, test', function(){
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   });
 
   app.configure('prod', function(){
