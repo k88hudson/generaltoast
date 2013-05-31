@@ -11,10 +11,10 @@ define(['jquery', 'meat'],
 
     if (url) {
       if (url.indexOf('/post/') > -1 || url.indexOf('/edit/') > -1) {
-        body.find('.container.right').addClass('hidden');
+        body.find('.container.last').addClass('hidden');
         meat.getOne(body);
       } else if (url.indexOf('/recent') > -1 || url === '/') {
-        body.find('.container.right').removeClass('hidden');
+        body.find('.container.last').removeClass('hidden');
         meat.getAll();
       } else {
         return;

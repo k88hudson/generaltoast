@@ -2,13 +2,17 @@ extend layout
 
 block content
   .container
-    h1 Recent
-    .messages
-    if page === 'index'
-      .pagination
-        a(href='/?start=#{prev}', class='prev hidden', data-action='pagination', data-prev='#{prev}', data-next='#{next}') &#8592;
-        a(href='/?start=#{next}', class='next hidden', data-action='pagination', data-prev='#{prev}', data-next='#{next}') &#8594;
+    .inner-container
+      .content-container
+        h1 Recent
+        .messages
+        if page === 'index'
+          .pagination
+            a(href='/?start=#{prev}', class='prev hidden', data-action='pagination', data-prev='#{prev}', data-next='#{next}') &#8592;
+            a(href='/?start=#{next}', class='next hidden', data-action='pagination', data-prev='#{prev}', data-next='#{next}') &#8594;
 
-  .container.right
-    h2 Subscriptions
-    .subscriptions
+  .container.last
+    .inner-container
+      .content-container
+        h2 Subscriptions
+        .subscriptions

@@ -1,16 +1,17 @@
 extend layout
 
 block content
-  .form
-    h1 Add new
+  .container
+    .form
+      h1 Add new
 
-    form(method='post', action='/add', enctype='multipart/form-data')
-      textarea(name='message')
-      input(type='text', name='url', placeholder='url')
-      input(type='file', name='photo')
-      input(type='text', name='geolocation', placeholder='geolocation')
-      label(for='is_private')
-        span Is private?
-        input(type='checkbox', name='is_private')
-      a(href='/', class='cancel') Cancel
-      button(type='submit') Add
+      form(method='post', action='/add', enctype='multipart/form-data')
+        textarea(name='message')
+        input(type='text', name='url', placeholder='url')
+        input(type='file', name='photo')
+        input(type='text', name='geolocation', placeholder='geolocation')
+        label(for='is_private')
+          span Is private?
+          input(type='checkbox', name='is_private')
+        a(href='/', class='cancel') Cancel
+        button(type='submit') Add
