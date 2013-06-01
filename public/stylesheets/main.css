@@ -227,6 +227,7 @@ article p:empty {
 }
 
 body[data-page="post"] .messages article {
+    height: 100%;
     padding-bottom: 45px;
     width: 400px;
 }
