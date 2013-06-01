@@ -214,7 +214,7 @@ article p:empty {
 }
 
 .links .link {
-    bottom: 40px;
+    bottom: 25px;
     font-size: 16px;
     left: 0;
     overflow: hidden;
@@ -227,9 +227,12 @@ article p:empty {
 }
 
 body[data-page="post"] .messages article {
-    height: 100%;
     padding-bottom: 45px;
     width: 400px;
+}
+
+body[data-page="post"] .messages .links:not(:empty) {
+    height: 100%;
 }
 
 body[data-page="post"] .messages .links img {
