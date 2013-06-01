@@ -172,16 +172,14 @@ textarea {
 }
 
 .messages {
-    clear: both;
-    float: left;
     text-align: center;
-    width: 100%;
 }
 
 article {
     background-color: rgba(2, 2, 2, 0.8);
     color: #444;
     display: inline-block;
+    float: left;
     font-family: Arial, sans-serif;
     font-size: 20px;
     height: 290px;
@@ -324,27 +322,6 @@ ul.subscriptions .actions a, .actions a {
 
 ul.subscriptions .actions a:hover, .actions a:hover {
     background-color: rgba(42, 143, 221, 1.0);
-}
-
-ul.subscriptions li {
-    background-color: #f8f9fa;
-    border-bottom: 20px solid rgba(255, 255, 255, 0.65);
-    margin-bottom: 5px;
-    padding: 7px 10px;
-    position: relative;
-    width: 100%;
-}
-
-ul.subscriptions li a {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 18px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-ul.subscriptions li a:hover {
-    color: #111;
 }
 
 .hidden, .pagination a.hidden {
