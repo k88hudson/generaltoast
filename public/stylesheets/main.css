@@ -216,9 +216,13 @@ article p:empty {
 .links .link {
     bottom: 40px;
     font-size: 16px;
-    left: 20px;
+    left: 0;
+    overflow: hidden;
+    padding: 20px;
     position: absolute;
+    right: 0;
     text-align: left;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -227,7 +231,7 @@ body[data-page="post"] .messages article {
     width: 400px;
 }
 
-body[data-page="post"] .links img {
+body[data-page="post"] .messages .links img {
     width: 100%;
 }
 
