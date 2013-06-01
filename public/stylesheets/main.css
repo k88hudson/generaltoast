@@ -196,7 +196,8 @@ article p {
     color: #bbb;
     left: 0;
     line-height: 25px;
-    overflow: hidden;
+    max-height: 200px;
+    overflow-y: auto;
     padding: 10px 20px;
     position: absolute;
     right: 0;
@@ -212,11 +213,22 @@ article p:empty {
     width: 135%;
 }
 
+.links .link {
+    bottom: 40px;
+    font-size: 16px;
+    left: 20px;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+}
+
 body[data-page="post"] .messages article {
-    background-color: transparent;
-    height: auto;
-    padding-bottom: 25px;
+    padding-bottom: 45px;
     width: 400px;
+}
+
+body[data-page="post"] .links img {
+    width: 100%;
 }
 
 input[type="text"], textarea {

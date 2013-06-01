@@ -25,10 +25,10 @@ define(['jquery'],
         var result = '';
 
         if (url.url.match(/\.[jpg|jpeg|gif|png]\??/i)) {
-          result = '<a href="' + url.url + '" title="' +
+          result = '<a class="image" href="' + url.url + '" title="' +
             url.title + '"><img src="' + url.url + '"></a>';
         } else {
-          result = '<a href="' + url.url + '" title="' +
+          result = '<a class="link" href="' + url.url + '" title="' +
             url.title + '">' + url.title + '</a>';
         }
 
