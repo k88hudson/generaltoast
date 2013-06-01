@@ -41,24 +41,24 @@ define(['jquery'],
     }
 
     if (admin) {
-      isAdmin = '<a href="/edit/' + post.id + '">edit</a>' +
+      isAdmin = '<a href="/edit/' + post.id + '" title="Edit">E</a>' +
         '<a href="javascript:;" data-url="/delete/' + post.id +
-        '" data-action="delete-post">delete</a>';
+        '" data-action="delete-post" title="Delete">D</a>';
     }
 
     if (isSubscription) {
       if (body.data('authenticated') === true) {
         permalink = '<a href="javascript:;" data-action="share" data-url="' +
-          post.meta.originUrl + '">share</a>';
+          post.meta.originUrl + '" title="Share">S</a>';
       }
     } else {
       permalink = '<a href="javascript:;" ' +
         'data-action="get-post" data-url="/post/' + post.id + '" ' +
-        'class="permalink">permalink</a>';
+        'class="permalink" title="Permalink">P</a>';
     }
 
     if (post.meta.isShared || isSubscription) {
-      shared = '<a href="' + post.meta.originUrl + '" target="_blank">origin</a>';
+      shared = '<a href="' + post.meta.originUrl + '" title="Origin" target="_blank">O</a>';
     }
 
     return $('<article id="post_' + post.id + '" class="article ' +
@@ -92,7 +92,7 @@ define(['jquery'],
 
         var next = body.find('.pagination .next');
 
-        if (data.next) {
+        if (data.next !== false) {
           next.attr('href', '/all?start=' + data.next)
               .removeClass('hidden');
         } else {
@@ -101,7 +101,7 @@ define(['jquery'],
 
         var prev = body.find('.pagination .prev');
 
-        if (data.prev) {
+        if (data.prev !== false) {
           prev.attr('href', '/all?start=' + data.prev)
               .removeClass('hidden');
         } else {
@@ -121,7 +121,6 @@ define(['jquery'],
 
       $.getJSON('/subscription/all', function (data) {
         if (data.posts) {
-          body.find('.container.right').removeClass('hidden');
           body.find('.subscriptions').empty();
 
           for (var i = 0; i < data.posts.length; i ++) {
@@ -138,11 +137,23 @@ define(['jquery'],
     getOne: function (self) {
       $.getJSON(self.data('url'), function (data) {
         if (data.post) {
-          body.find('h1').text('Post');
-          body.find('.container.right').addClass('hidden');
           history.pushState(data.post, 'post ' + data.post.id, '/post/' + data.post.id);
+          body.find('h1').text('Post');
+          body.attr('data-page', 'post')
+              .attr('data-url', '/post/' + data.post.id);
           body.find('.messages').html(generatePost(data.post, data.isAdmin, false));
+          body.find('.pagination a').addClass('hidden');
         }
+
+        $.getJSON('/subscription/all', function (data) {
+          if (data.posts) {
+            body.find('.subscriptions').empty();
+
+            for (var i = 0; i < data.posts.length; i ++) {
+              body.find('.subscriptions').append(generatePost(data.posts[i], false, true));
+            }
+          }
+        });
       });
     },
 

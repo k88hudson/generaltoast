@@ -3,7 +3,7 @@
 module.exports = function (app, meat, nconf, isAdmin) {
   var request = require('request');
 
-  var SUBSCRIPTION_MAX = 19;
+  var SUBSCRIPTION_MAX = 12;
 
   app.get('/subscription/all', function (req, res) {
     meat.getSubscriptions(function (err, subscriptions) {

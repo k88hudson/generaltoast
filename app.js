@@ -15,6 +15,7 @@ var isAdmin = function (req, res, next) {
   if (req.session.email && whitelist.indexOf(req.session.email) > -1) {
     next();
   } else {
+    req.session.reset();
     res.redirect('/logout');
   }
 };
@@ -33,7 +34,7 @@ var meat = new Meatspace({
   fullName: nconf.get('full_name'),
   postUrl: nconf.get('url'),
   db: nconf.get('db'),
-  limit: 20
+  limit: 12
 });
 
 require('express-persona')(app, {

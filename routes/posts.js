@@ -52,7 +52,9 @@ module.exports = function (app, meat, nconf, isAdmin) {
           json: function () {
             res.send({
               post: post,
-              isAdmin: utils.isEditor(req)
+              isAdmin: utils.isEditor(req),
+              prev: false,
+              next: false
             });
           }
         });
@@ -79,7 +81,6 @@ module.exports = function (app, meat, nconf, isAdmin) {
         }
       });
     } else {
-      req.session.reset();
       meat.shareRecent(req.query.start || 0, function (err, posts) {
         if (err) {
           res.status(404);

@@ -120,27 +120,23 @@ a {
     position: relative;
 }
 
-.form {
-    float: left;
-    max-width: 700px;
-    width: 70%;
-}
-
-form {
-    max-width: 800px;
-}
-
 .container, .inner-container, .form {
     clear: both;
     margin: 10px auto;
-    max-width: 900px;
+    max-width: 1200px;
     min-width: 300px;
+}
+
+.form {
+    max-width: 700px;
+    padding: 0 10px;
 }
 
 .content-container {
     clear: both;
     float: left;
-    padding: 0 20px 20px;
+    padding: 0 0 20px;
+    text-align: center;
     width: 100%;
 }
 
@@ -151,8 +147,8 @@ form {
 
 .container.last {
     background-color: #77e7ff;
-    min-height: 400px;
-    max-width: 100%;
+    float: left;
+    height: 100%;
     padding: 0;
     width: 100%;
 }
@@ -160,6 +156,8 @@ form {
 h1, h2 {
     color: #24d3f8;
     font-size: 40px;
+    margin-bottom: 5px;
+    padding-left: 5px;
 }
 
 .container.last h2 {
@@ -175,23 +173,24 @@ textarea {
 .messages {
     clear: both;
     float: left;
+    text-align: center;
     width: 100%;
 }
 
 article {
     background-color: rgba(2, 2, 2, 0.8);
     color: #444;
-    float: left;
+    display: inline-block;
     font-family: Arial, sans-serif;
     font-size: 20px;
-    height: 280px;
+    height: 290px;
     margin: 5px;
     overflow: hidden;
     position: relative;
-    width: 280px;
+    width: 290px;
 }
 
-.messages p, .subscriptions p {
+article p {
     background-color: rgba(1, 1, 1, 0.7);
     color: #bbb;
     left: 0;
@@ -200,11 +199,23 @@ article {
     padding: 10px 20px;
     position: absolute;
     right: 0;
+    text-align: left;
     text-overflow: ellipsis;
 }
 
-.messages img {
-    width: 100%;
+article p:empty {
+    display: none;
+}
+
+.links img {
+    width: 135%;
+}
+
+body[data-page="post"] .messages article {
+    background-color: transparent;
+    height: auto;
+    padding-bottom: 25px;
+    width: 400px;
 }
 
 input[type="text"], textarea {
@@ -248,6 +259,10 @@ button {
     padding: 5px 10px;
 }
 
+form {
+    margin-top: 65px;
+}
+
 form button {
     float: right;
 }
@@ -269,18 +284,25 @@ ul.links a {
 .actions {
     bottom: 0;
     position: absolute;
-    right: 5px;
+    right: -2px;
 }
 
 ul.subscriptions .actions a, .actions a {
-    color: #bbb;
-    padding-left: 15px;
+    background-color: rgba(42, 143, 221, 0.5);
+    color: #fff;
+    display: inline-block;
+    margin: 0 2px;
+    padding: 5px 3px;
     font-family: 'BebasNeueRegular', Arial, sans-serif;
-    font-size: 18px;
+    font-size: 22px;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: #39739c -1px -1px 0;
+    width: 25px;
 }
 
 ul.subscriptions .actions a:hover, .actions a:hover {
-    color: #111;
+    background-color: rgba(42, 143, 221, 1.0);
 }
 
 ul.subscriptions li {
@@ -319,16 +341,20 @@ ul.subscriptions li a:hover {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     float: left;
-    padding-right: 20px;
+    padding: 0 20px;
     width: 100%;
 }
 
 .pagination a {
     background-color: #59d5bc;
     color: #fff;
-    font-size: 20px;
+    font-size: 35px;
     display: inline-block;
-    padding: 5px;
+    padding: 15px;
+}
+
+.pagination .prev {
+    float: left;
 }
 
 .pagination .next {
@@ -337,24 +363,15 @@ ul.subscriptions li a:hover {
 
 .cancel {
     display: inline-block;
+    font-family: Arial, sans-serif;
     float: left;
-    margin-top: 10px;
-}
-
-@media only screen and (min-width: 371px) and (max-width: 800px) {
-    .container {
-        clear: both;
-        width: 83%;
-    }
+    font-size: 20px;
+    margin-top: 15px;
 }
 
 @media only screen and (max-width: 370px) {
-    .container, .form {
-        margin-top: 20px;
-    }
-
-    .messages, .subscriptions {
-        margin-right: -40px;
+    body[data-page="post"] .messages article {
+        width: 300px;
     }
 
     #side-actions {
@@ -362,25 +379,25 @@ ul.subscriptions li a:hover {
     }
 
     form {
-        margin: 50px 0 0;
-        width: 320px;
+        margin: 40px 0 0;
+        width: 340px;
     }
 
     h1, h2 {
-        font-size: 38px;
-        line-height: 33px;
+        text-align: left;
+        margin-left: 5px;
     }
 
     h1 {
-        margin-top: 22px;
+        margin-top: 30px;
+    }
+
+    .form h1 {
+        margin: 40px 0 0;
     }
 
     .messages, ul.subscriptions {
-        margin-top: 50px;
-    }
-
-    .container.right {
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     ul.subscriptions li {
@@ -389,12 +406,8 @@ ul.subscriptions li a:hover {
 }
 
 @media only screen and (max-width: 330px) {
-    .messages, .subscriptions {
-        margin-right: 0;
-    }
-
     form {
-        width: 275px;
+        width: 300px;
     }
 
     ul.subscriptions li {
