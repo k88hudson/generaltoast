@@ -26,6 +26,10 @@ Include your Amazone S3 key, secret and bucket in local.json so that you can upl
 > brew install redis
 > redis-server
 
+## Install imagemagick
+
+> brew install imagemagick
+
 ### Differences from dev and prod
 
 If you run this in dev, you don't need to do anything by default. If you run this in production:
