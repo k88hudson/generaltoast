@@ -9,7 +9,6 @@
     "url": "your url",
     "db": 1,
     "debug": true,
-    "s3_url": "https://s3.amazonaws.com/<your bucket>",
     "s3_key": "your s3 key",
     "s3_secret": "your s3 secret",
     "s3_bucket": "your bucket"
