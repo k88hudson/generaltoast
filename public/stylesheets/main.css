@@ -149,6 +149,7 @@ a {
     background-color: #77e7ff;
     float: left;
     height: 100%;
+    max-width: 100%;
     padding: 0;
     width: 100%;
 }
