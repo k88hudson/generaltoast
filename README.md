@@ -24,6 +24,7 @@ Include your Amazone S3 key, secret and bucket in local.json so that you can upl
 ### Install and start redis
 
 > brew install redis
+
 > redis-server
 
 ## Install imagemagick
