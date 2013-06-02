@@ -15,6 +15,7 @@ This is a sample micro[b]log app using [meatspace](https://npmjs.org/package/mea
 ### Copy over json files and adjust values as needed
 
 > cp local.json-dist local.json
+
 > cp whitelist.json-dist whitelist.json
 
 whitelist.json contains emails that are allowed to manage posts.
