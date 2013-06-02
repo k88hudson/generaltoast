@@ -89,6 +89,11 @@ a {
     font-size: 45px;
 }
 
+#header a.mini {
+    font-size: 20px;
+    width: 65px;
+}
+
 #header a:hover, .pagination a:hover {
     background-color: #3e99a4;
 }
@@ -408,7 +413,7 @@ ul.subscriptions .actions a:hover, .actions a:hover {
     }
 
     .messages, ul.subscriptions {
-        margin-top: 30px;
+        margin-top: 10px;
     }
 
     ul.subscriptions li {
