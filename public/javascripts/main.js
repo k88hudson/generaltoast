@@ -44,7 +44,7 @@ define(['jquery', 'meat'],
         data: { assertion: assertion },
         success: function (res, status, xhr) {
           localStorage.setItem('personaEmail', res.email);
-          window.location.reload(true);
+          document.location.href = '/';
         },
         error: function(res, status, xhr) {
           console.log('error logging in');

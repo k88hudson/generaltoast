@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (app, meat, nconf, notLoggedIn, isAdmin) {
+module.exports = function (app, meat, nconf, isAdmin) {
   var utils = require('../lib/utils');
 
   app.get('/', function (req, res) {
@@ -22,19 +22,8 @@ module.exports = function (app, meat, nconf, notLoggedIn, isAdmin) {
     });
   });
 
-  app.get('/admin', notLoggedIn, function (req, res) {
-    res.render('admin', { url: null, page: 'admin' });
-  });
-
   app.get('/logout', function (req, res) {
     req.session.reset();
-    res.format({
-      html: function () {
-        res.redirect('/');
-      },
-      json: function () {
-        res.send({ message: 'logged out' });
-      }
-    });
+    res.redirect('/');
   });
 };

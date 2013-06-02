@@ -15,18 +15,9 @@ var isAdmin = function (req, res, next) {
   if (req.session.email && whitelist.indexOf(req.session.email) > -1) {
     next();
   } else {
-    req.session.reset();
     res.redirect('/logout');
   }
 };
-
-var notLoggedIn = function (req, res, next) {
-  if (req.session.email) {
-    res.redirect('/');
-  } else {
-    next();
-  }
-}
 
 /* Initialize meat */
 
@@ -42,7 +33,7 @@ require('express-persona')(app, {
 });
 
 // routes
-require('./routes')(app, meat, nconf, notLoggedIn, isAdmin);
+require('./routes')(app, meat, nconf, isAdmin);
 require('./routes/posts')(app, meat, nconf, isAdmin);
 require('./routes/subscriptions')(app, meat, nconf, isAdmin);
 
