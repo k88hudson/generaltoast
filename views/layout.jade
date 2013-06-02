@@ -15,21 +15,21 @@ html
     #wrapper
       .content
         block content
-        #footer
-          a(href='javascript:;', data-action='login') Admin login
+      #footer
+        .footer-inner
+          a(href='https://npmjs.org/package/meatspace') Meatspace
+          a(href='https://github.com/ednapiranha/generaltoast') Fork this repo
+          if session.isAdmin
+            a(href='javascript:;', data-action='logout') Log out
+          else
+            a(href='javascript:;', data-action='login') Admin login
     #header
       a(href='/', title='Home') /
-      if !session.isAdmin
-        a(href='/recent', title='Get this subscription url', class='sub') +
-      else
-        a(href='/subscription/manage', title='Manage subscriptions') s
-    #side-actions
       if session.isAdmin
-        a(href='/add') Add new
-        a(href='javascript:;', data-action='logout') Log out
+        a(href='/add', title='Add new', class='sub') +
+        a(href='/subscription/manage', title='Manage subscriptions') s
       else
-        a(href='https://npmjs.org/package/meatspace') Meatspace
-        a(href='https://github.com/ednapiranha/generaltoast') Get theme
+        a(href='/recent', title='Get this subscription url', class='sub') Subscribe
 
     script(src='https://login.persona.org/include.js', type='text/javascript')
     if isDebug

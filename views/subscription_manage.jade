@@ -13,9 +13,8 @@ block content
       .form
         h2 Current Subscriptions
 
-        ul.subscriptions
+        ul.manage
           for sub in subscriptions
             li
               a(href='#{sub}')= sub
-              .actions
-                a(href='javascript:;', data-url="#{sub}", data-action='delete-subscription') Unsubscribe
+              button(data-url='#{sub}', data-action='delete-subscription') Unsubscribe

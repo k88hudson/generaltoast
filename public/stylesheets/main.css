@@ -71,47 +71,25 @@ a {
     z-index: 2;
 }
 
-#header a, #side-actions a {
-    background-color: #f1f1f1;
+#header a {
+    background-color: #59d5bc;
+    color: #fff;
     float: left;
     font-family: 'BebasNeueRegular', Arial, sans-serif;
     font-size: 25px;
-    line-height: 25px;
+    line-height: 35px;
     margin-right: 5px;
     outline: none;
     padding: 5px 10px;
     text-align: center;
-    width: 20px;
+    width: 30px;
 }
 
 #header a.sub {
     font-size: 45px;
 }
 
-#header a:hover {
-    background-color: #111;
-    color: #eee;
-}
-
-#side-actions {
-    position: fixed;
-    right: 0;
-    top: 40px;
-    z-index: 2;
-    width: 90px;
-}
-
-#side-actions a {
-    background-color: #59d5bc;
-    color: #fff;
-    font-size: 21px;
-    line-height: 22px;
-    margin-bottom: 5px;
-    text-align: left;
-    width: 100%;
-}
-
-#side-actions a:hover, .pagination a:hover {
+#header a:hover, .pagination a:hover {
     background-color: #3e99a4;
 }
 
@@ -122,7 +100,7 @@ a {
 
 .container, .inner-container, .form {
     clear: both;
-    margin: 10px auto;
+    margin: 10px auto 0 auto;
     max-width: 1200px;
     min-width: 300px;
 }
@@ -276,12 +254,18 @@ button {
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
-    font-size: 18px;
-    padding: 5px 10px;
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 22px;
+    line-height: 22px;
+    margin: 5px 0;
+    padding: 5px 10px 3px;
 }
 
 form {
-    margin-top: 65px;
+    display: block;
+    float: left;
+    margin: 65px 0;
+    width: 100%;
 }
 
 form button {
@@ -308,6 +292,24 @@ ul.links a {
     right: -2px;
 }
 
+ul.manage {
+    display: block;
+    margin-bottom: 50px;
+}
+
+ul.manage li {
+    background-color: #eee;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+
+ul.manage a {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    margin-right: 10px;
+}
+
 ul.subscriptions .actions a, .actions a {
     background-color: rgba(42, 143, 221, 0.5);
     color: #fff;
@@ -331,9 +333,22 @@ ul.subscriptions .actions a:hover, .actions a:hover {
 }
 
 #footer {
+    background-color: #111;
     clear: both;
     float: left;
-    margin: 20px;
+    width: 100%;
+}
+
+.footer-inner {
+    padding: 20px;
+}
+
+#footer a {
+    color: #aaa;
+    display: inline-block;
+    font-family: 'BebasNeueRegular', Arial, sans-serif;
+    font-size: 22px;
+    margin-right: 20px;
 }
 
 .pagination {
@@ -374,12 +389,8 @@ ul.subscriptions .actions a:hover, .actions a:hover {
         width: 300px;
     }
 
-    #side-actions {
-        top: 40px;
-    }
-
     form {
-        margin: 40px 0 0;
+        margin-top: 10px;
         width: 340px;
     }
 
@@ -389,11 +400,11 @@ ul.subscriptions .actions a:hover, .actions a:hover {
     }
 
     h1 {
-        margin-top: 30px;
+        margin-top: 50px;
     }
 
     .form h1 {
-        margin: 40px 0 0;
+        margin: 50px 0 0;
     }
 
     .messages, ul.subscriptions {
