@@ -106,8 +106,7 @@ a {
 .container, .inner-container, .form {
     clear: both;
     margin: 10px auto 0 auto;
-    max-width: 1200px;
-    min-width: 300px;
+    max-width: 1240px;
 }
 
 .form {
@@ -118,9 +117,8 @@ a {
 .content-container {
     clear: both;
     float: left;
-    padding: 0 0 20px;
+    padding: 0 20px;
     text-align: center;
-    width: 100%;
 }
 
 .content {
@@ -133,7 +131,7 @@ a {
     float: left;
     height: 100%;
     max-width: 100%;
-    padding: 0;
+    padding: 0 0 30px;
     width: 100%;
 }
 
@@ -389,7 +387,23 @@ ul.subscriptions .actions a:hover, .actions a:hover {
     margin-top: 15px;
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 1225px) {
+    .inner-container {
+        width: 940px;
+    }
+}
+
+@media only screen and (max-width: 916px) {
+    .inner-container {
+        width: 640px;
+    }
+}
+
+@media only screen and (max-width: 616px) {
+    .inner-container {
+        width: 320px;
+    }
+
     body[data-page="post"] .messages article {
         width: 300px;
     }
