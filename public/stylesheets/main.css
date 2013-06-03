@@ -404,6 +404,10 @@ ul.subscriptions .actions a:hover, .actions a:hover {
         width: 320px;
     }
 
+    .content-container {
+        padding: 0;
+    }
+
     body[data-page="post"] .messages article {
         width: 300px;
     }
