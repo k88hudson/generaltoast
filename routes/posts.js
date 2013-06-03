@@ -209,7 +209,7 @@ module.exports = function (app, meat, nconf, isAdmin) {
               res.status(400);
               next(err);
             } else {
-              savePost(req, res, message, nconf.get('s3_url') + filename, next);
+              savePost(req, res, message, s3.url(filename), next);
             }
           });
         }
