@@ -216,6 +216,16 @@ body[data-page="landing"] .links img {
     white-space: nowrap;
 }
 
+body[data-page="post"] .content-container {
+    padding: 0;
+    width: 100%;
+}
+
+body[data-page="post"] .messages {
+    margin: 0 auto;
+    width: 500px;
+}
+
 body[data-page="post"] .messages article {
     height: auto;
     min-height: 240px;
@@ -235,16 +245,16 @@ body[data-page="post"] .messages article p {
 }
 
 .location {
-    background-image: url('data:image/svg+xml;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDA2NEY4NzNDNkRDMTFFMjg3MjFCMDI3MUJGM0Y1ODIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDA2NEY4NzRDNkRDMTFFMjg3MjFCMDI3MUJGM0Y1ODIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MDY0Rjg3MUM2REMxMUUyODcyMUIwMjcxQkYzRjU4MiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MDY0Rjg3MkM2REMxMUUyODcyMUIwMjcxQkYzRjU4MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuUVEfgAAAOgSURBVHjazJhbSBRRGMfP7O64tSuulFkiQQRhaTciHyrJCnrKogvSS9FLFAQVBAW9BBGZZlH0EL11oaIweinUpMxIraDYVIRuVph0MSu11dwZd6b/qSPszs44Z/aM1gc/xDPnfOe/37l950i6rhM7axtQSd+wRjzSqNWywSRAa/0AX0CScw0lIZ+HzAvKhMckHoGl7T2ksS9KJiYrXAw2geVgBshg5RHwATwCN8GDkQa/oLAo5CdVBVlcAn08lbQ4mBWAI2A9i5jR0sE0UAj2gHpwCDQZ/NiahyvMiWwFTWADkKTk72asAg1gv2Txi4QExtlucAmEiHOjo3UcVIyVwBJwhojbAQzxLrcF0hl9zqZON3hM5xnosqrkx0J7HlErwxE1z805uA9/ci0+vwPbQD5YAorYIqILKGzW4c+YFijv7D/syjbzVdVCq1u6X35Ttam+5MnzDKwDHy2a09V8DayJL6Q9xnSi1Myfkj83KHcIRbChd6i4KxozE9cHNo8ibmQ/3MKinLArDGp6Wu33oRLhIX7Sryyz+HQedHCMUi84lbSkoTIcsfTNL7AzGpvlM98XbjtYuXeAmihQgu/hmYrNFLMVGNP1DJNi6vWTA4E9oN/kXA5Cn1dIIJQoFodLwIHACQyjqXYnn63ALNnbZeGh0IHABSCYGD2dTJa9n9M8ki4kcFG6/DRm7mIH8HIKTDo5VPicE5DDkugiWRry16d7JcVE40KW0djZTnZMJs2RlZn+auFVjI30TUFQro2aR/EgOM0SVaMF2Pezxg/U1+yA3FKc6W8SzgfpL0AEy3HirEVyZTYie8FGcIsm33ThgzwWNdPzVsHy3Z4TLEcCPOxOwqr/yYyrjUdWnE0nnBmK8jd6raXZgRtup1tlZncMp4Z9leT6vRUBjug5FdgMal3IB9sgsmqsMupjLgisMB57bgp8COoExLWDKicNPCl0UiYgkN5JlLEWSO+491Jo9wJcd9rIk2IkUoliJd2jx0sgvYjfd1D/FbiaSkcegflU5nDuDY23wLvxby6j2GtwJdVORATyRvFEqtFzQ2Ad2xutjF6qLot0ICqQ2lGb6A3+a4E0io0m5W/ZQxP51wJ1i7l4UjR6bgkkLMtpjvv/PbjohmO3BBqjSKM38D8JpFYDWul7E7jgllOulD+KnJ8+ftvdDFiul8MejUyN+olq/Ik51yt/Q2+UdKsxnkuwxEYlZpnyg2zZS1Zk+rkE/hZgAKQyD3Rz8N/4AAAAAElFTkSuQmCC');
+    background-image: url('data:image/svg+xml;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjUwMkIyNkFDNzAxMTFFMjg3MjFCMDI3MUJGM0Y1ODIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjUwMkIyNkJDNzAxMTFFMjg3MjFCMDI3MUJGM0Y1ODIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MDY0Rjg3NUM2REMxMUUyODcyMUIwMjcxQkYzRjU4MiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MDY0Rjg3NkM2REMxMUUyODcyMUIwMjcxQkYzRjU4MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmioofYAAANWSURBVHjaxJhbSBRRGMfPmb24661SMnwwiEIqKrIoAiGpoCAkKkKfujz02lNv9phZZlfprSsVFUF2I9LoJaQoStKsl+yqWZTR6qa76+7sTP+vPdJeZs/OzK72wQ9mZ85+8z9nvvN93wzXdZ2lsyguPRwOsTEcKMZDZoHZoBiMgQEwGD+AvLs4Y+tmeJhX4UxmXCYmqOmspvsH+xSKMvc/P15QB+rBUlBK9wMq8IHXoA1cod80oSIHZ4+qyli52yEV42QZzMljM3PFxKwHR8Eig6EkqAysFewFDVjRa07OTJnCzNsecD+NECObA66CRrM3MCtmF2i1KH7C9mFhGlyc50TMfHBKct0PPot4Sb0B/xs4jV2j4dVZiRHBT8tcYHD5LdgJFoIFgq3gecIOoR2lM97c728OabrDtpi+gFr5bTy6ySAAn4BqcFFs5SD4Dm6CGnA7frAHd+kdi6zqHBmvti3mgS+0cSSqu5TUx7Id/EyXEUSMDcSfRJZgHb9Cm22L6RkNrzTY+zT7Dxke/zA4H3/CjQB+E4gsj9oV41P1csX4EZmxpymBrGplYUncSMVgZY3+GDYpJpKS7mP347bEFCh8yKBYLDEpJiE5auTPofiQb1RbYhYXurojqWq2icKYKRZ3JCwTIrjS6+yVlQapmJppee0ePOwkPRXgZAYx+0FVcvVeM91zz/ZuWlbk7qrIc3SqumF5aDN4ZPPAGSqQCUGG/8/1Ovs2lHg6bFdtKNWwrE16rEAm2xZQC7pFwisRLUV+SsQjBe8uL2wpdvCgbTF6DJrNY5FxjdqGFTIf1M+UOJV3taWey7kolKTpAMvCMOMWhF4wVy1Ee3ISs2DvMZtLkobSshhy1WRTzBFRr3La6dG2fGZRyEdR2XPedlISPWhRzDEQmAwxZHfBC5Nj+8EFK86titEsxA6tyuhkiiG7A7oyjKHG6pxVx3bEUH90KMOY4+D3VIghuwVeprn2BZy149SuGFWys06IPnnKxEz0wj1J5wZF1WZTLUY1iB3qc0b+hxiyG+CVOP4KTmfjLFsx1HQfFset4hUlm+ouN/pGQx+LVEW6OvXpsq2qxV5TTBRt+cciajevDwWYHx4d8o8IRenyCr1JuqGmbmY+3g7kTv4IMAAcmfMN9aqJ5QAAAABJRU5ErkJggg==');
     background-position: 5px;
     background-repeat: no-repeat;
-    bottom: -2px;
+    bottom: 0;
     display: inline-block;
-    height: 40px;
+    height: 35px;
     left: -5px;
     padding: 3px 0 3px 3px;
     position: absolute;
-    width: 40px;
+    width: 35px;
 }
 
 .location:hover {
@@ -378,11 +388,11 @@ ul.subscriptions .actions a:hover, .actions a:hover {
 }
 
 #footer a {
-    color: #aaa;
+    color: #bbb;
     display: inline-block;
     font-family: 'OstrichSansBold', Arial, sans-serif;
     font-size: 22px;
-    margin-right: 18px;
+    margin-right: 20px;
 }
 
 #footer a:hover {
@@ -439,12 +449,16 @@ ul.subscriptions .actions a:hover, .actions a:hover {
         width: 320px;
     }
 
+    body[data-page="post"] .messages {
+        width: 320px;
+    }
+
     p.micro {
         padding-bottom: 0;
     }
 
-    .content-container {
-        padding: 0 10px;
+    article {
+        margin: 5px 15px;
     }
 
     body[data-page="post"] .messages article {
@@ -469,7 +483,11 @@ ul.subscriptions .actions a:hover, .actions a:hover {
     }
 
     ul.subscriptions li {
-        width: 300px;
+        width: 290px;
+    }
+
+    #footer a {
+        line-height: 35px;
     }
 }
 
