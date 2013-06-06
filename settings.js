@@ -19,12 +19,11 @@ module.exports = function(app, configurations, express) {
     app.use(express.static(__dirname + '/public'));
     app.use(clientSessions({
       cookieName: nconf.get('session_cookie'),
-      secret: nconf.get('session_secret'), // MUST be set
-      // true session duration:
-      // will expire after duration (ms)
-      // from last session.reset() or
-      // initial cookieing.
-      duration: 24 * 60 * 60 * 1000 * 28 // 4 weeks
+      secret: nconf.get('session_secret'),
+      duration: 24 * 60 * 60 * 1000 * 28, // 4 weeks
+      cookie: {
+        httpOnly: true
+      }
     }));
     app.use(function(req, res, next) {
       res.locals.session = req.session;
