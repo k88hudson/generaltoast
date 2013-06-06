@@ -6,6 +6,7 @@
     "session_secret": "secret",
     "session_cookie": "session",
     "full_name": "your name",
+    "username": "your username",
     "url": "your url",
     "db": 1,
     "debug": true,

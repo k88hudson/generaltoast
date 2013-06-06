@@ -23,6 +23,7 @@ var isAdmin = function (req, res, next) {
 
 var meat = new Meatspace({
   fullName: nconf.get('full_name'),
+  username: nconf.get('username'),
   postUrl: nconf.get('url'),
   db: nconf.get('db'),
   limit: 12

@@ -31,7 +31,7 @@ define(['jquery', 'meat'],
   if (navigator.geolocation && body.data('page') === 'edit') {
     navigator.geolocation.getCurrentPosition(function (loc) {
       body.find('form input[name="geolocation"]').val(loc.coords.latitude +
-        ', ' + loc.coords.longitude);
+        ',' + loc.coords.longitude);
     });
   }
 
@@ -69,9 +69,11 @@ define(['jquery', 'meat'],
   });
 
   window.onpopstate = function (ev) {
-    body.attr('data-url', document.location.pathname)
-        .attr('data-page', 'index');
-    checkUrl();
+    if (ev.state) {
+      body.attr('data-url', document.location.pathname)
+          .attr('data-page', 'index');
+      checkUrl();
+    }
   }
 
   window.onpushstate = function (ev) {

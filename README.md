@@ -46,4 +46,4 @@ If you run this in dev, you don't need to do anything by default. If you run thi
 
 ## Subscribing to other meatspaces
 
-When you click on the 'S' in the top right hand corner after logging in, you can add urls to JSON feeds from other meatspace urls. For example, visiting [http://meatspace.generalgoods.net](http://meatspace.generalgoods.net) and clicking on '+' gives you the feed for that site. Add that url to your subscription and your site will pull in the latest posts.
+When you click on the 'S' in the top right hand corner after logging in, you can add urls to JSON feeds from other meatspace urls. For example, visiting [http://meatspace.generalgoods.net](http://meatspace.generalgoods.net) and clicking on 'Subscribe' gives you the feed for that site. Add that url to your subscription and your site will pull in the latest posts.

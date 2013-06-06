@@ -9,6 +9,7 @@ define(['jquery'],
     var shared = '';
     var permalink = '';
     var isAdmin = '';
+    var location = '';
     var urls = [];
 
     var breakify = function (text) {
@@ -61,9 +62,15 @@ define(['jquery'],
       shared = '<a href="' + post.meta.originUrl + '" title="Origin" target="_blank">O</a>';
     }
 
+    if (post.meta.location) {
+      post.meta.location = post.meta.location.replace(/\s/gi, '');
+      location = '<a href="https://maps.google.com/maps?ll=' + post.meta.location + '" ' +
+        'target="_blank" title="' + post.meta.location + '" class="location"></a>';
+    }
+
     return $('<article id="post_' + post.id + '" class="article ' +
       isPrivate + '"><p>' + breakify(post.content.message) + '</p>' + urls +
-      '<div class="actions">' + isAdmin + permalink + shared + '</div></article>');
+      '<div class="actions">' + isAdmin + permalink + shared + '</div>' + location + '</article>');
   };
 
   var getRecent = function (paginated) {
