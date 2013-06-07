@@ -37,7 +37,7 @@ Include your Amazone S3 key, secret and bucket in local.json so that you can upl
 If you run this in dev, you don't need to do anything by default. If you run this in production:
 
 * set your NODE_ENV to 'prod' (as in settings.js).
-* set local.json's debug to true
+* set local.json's debug to false
 * run grunt to minify js and css files
 
 ## Run the server
