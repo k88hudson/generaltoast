@@ -12,5 +12,7 @@
     "debug": true,
     "s3_key": "your s3 key",
     "s3_secret": "your s3 secret",
-    "s3_bucket": "your bucket"
+    "s3_bucket": "your bucket",
+    "analytics": "you google analytics value",
+    "analyticsHost": "your domain without the protocol (e.g. someurl.com)"
 }
