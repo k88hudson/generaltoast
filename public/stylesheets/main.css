@@ -384,7 +384,7 @@ ul.subscriptions .actions a:hover, .actions a:hover {
 }
 
 .footer-inner {
-    padding: 20px;
+    padding: 21px;
 }
 
 #footer a {
@@ -397,6 +397,23 @@ ul.subscriptions .actions a:hover, .actions a:hover {
 
 #footer a:hover {
     color: #77e7ff;
+}
+
+#logo {
+    background-image: url('../images/meatspace.svg');
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    height: 60px;
+    margin: 2px 0 0 20px;
+    width: 60px;
+}
+
+#logo:hover {
+    transform: rotate(120deg);
+    -webkit-transform: rotate(120deg);
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
 }
 
 .pagination {
