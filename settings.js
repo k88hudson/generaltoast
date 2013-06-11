@@ -2,6 +2,7 @@
 module.exports = function(app, configurations, express) {
   var clientSessions = require('client-sessions');
   var nconf = require('nconf');
+  var maxAge = 24 * 60 * 60 * 1000 * 28;
 
   nconf.argv().env().file({ file: 'local.json' });
 
@@ -20,9 +21,10 @@ module.exports = function(app, configurations, express) {
     app.use(clientSessions({
       cookieName: nconf.get('session_cookie'),
       secret: nconf.get('session_secret'),
-      duration: 24 * 60 * 60 * 1000 * 28, // 4 weeks
+      duration: maxAge, // 4 weeks
       cookie: {
-        httpOnly: true
+        httpOnly: true,
+        maxAge: maxAge
       }
     }));
     app.use(function(req, res, next) {
