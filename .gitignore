@@ -3,3 +3,4 @@ whitelist.json
 node_modules
 local.json
 public/javascripts/build
+db
