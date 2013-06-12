@@ -1,5 +1,5 @@
-define(['jquery'],
-  function($) {
+define(['jquery', 'moment'],
+  function($, moment) {
   'use strict';
 
   var body = $('body');
@@ -144,11 +144,12 @@ define(['jquery'],
     getOne: function (self) {
       $.getJSON(self.data('url'), function (data) {
         if (data.post) {
+          var dateInfo = '<p class="created">' + moment.unix(data.post.content.created).fromNow() + '</p>';
           history.pushState(data.post, 'post ' + data.post.id, '/post/' + data.post.id);
           body.find('h1').text('Post');
           body.attr('data-page', 'post')
               .attr('data-url', '/post/' + data.post.id);
-          body.find('.messages').html(generatePost(data.post, data.isAdmin, false));
+          body.find('.messages').html(generatePost(data.post, data.isAdmin, false)).append(dateInfo);
           body.find('.pagination a').addClass('hidden');
         }
 

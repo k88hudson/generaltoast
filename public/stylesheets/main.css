@@ -449,6 +449,13 @@ ul.subscriptions .actions a:hover, .actions a:hover {
     margin-top: 15px;
 }
 
+.created {
+    clear: both;
+    font-size: 25px;
+    line-height: 30px;
+    padding: 5px 0;
+}
+
 @media only screen and (max-width: 1225px) {
     .inner-container {
         width: 940px;
