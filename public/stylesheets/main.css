@@ -195,7 +195,7 @@ article p:empty {
     display: none;
 }
 
-.links img {
+body[data-page="index"] .links img {
     width: 135%;
 }
 
@@ -237,7 +237,7 @@ body[data-page="post"] .messages .links:not(:empty) {
 }
 
 body[data-page="post"] .messages .links img {
-    width: 100%;
+    max-width: 100%;
 }
 
 body[data-page="post"] .messages article p {
